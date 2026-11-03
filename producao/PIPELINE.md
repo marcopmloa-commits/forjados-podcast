@@ -21,7 +21,7 @@ Depois: `git add -A` (o .gitignore já exclui `saida/`), commit e push em `main`
 
 `audios/a1.json … a6.json`
 ```json
-{"titulo": "...", "descricao": "1–2 frases", "paragrafos": ["Forjados.", "...", "", "...", "Isso foi o Forjados. Mantenha-se firme."]}
+{"titulo": "...", "descricao": "1–2 frases", "paragrafos": ["GANCHO de 1–2 frases.", "Isto é o Forjados.", "...", "", "...", "Isso foi o Forjados. Mantenha-se firme."]}
 ```
 - **370–400 palavras** no total (= ~3 min com a voz padrão; 438 palavras deram 3min28). `""` = pausa de 1 s.
 
@@ -41,9 +41,25 @@ Depois: `git add -A` (o .gitignore já exclui `saida/`), commit e push em `main`
 
 - Tom: cru, direto, segunda pessoa, frases curtas, no estilo dos discursos motivacionais de operações especiais (tipo David Goggins).
 - **Texto 100% original.** Não imitar nem se passar por pessoas reais; não transcrever discursos/livros. Citar alguém só com fatos verificáveis e sem aspas longas.
-- Mistura por dia: 4 motivacionais (disciplina, dor, rotina, recaída, foco, medo, solidão, sono, treino, dinheiro, vício em celular…) + 2 histórias (forças especiais, missões famosas, seleções militares, atletas de ultraresistência, figuras históricas) — fatos conferidos via busca; na dúvida, generalize.
+- **Mistura por dia: 4 histórias + 2 motivacionais.** O foco do dono são **histórias reais de superação em guerras, batalhas triunfais, resistências impossíveis e operações especiais** — sempre terminando com a lição para a vida de quem ouve. Exemplos de fontes de tema: Termópilas; Desmond Doss em Okinawa; Louis Zamperini; cerco de Bastogne; Dunquerque; FEB em Monte Castelo; Batalha de Riachuelo; Guararapes; resgate de Entebbe; Hiroo Onoda (lado sombrio da obstinação); Marcus Luttrell; Moinho de Rorke's Drift; Masada; Stalingrado (civis e soldados); Nancy Wake; Simo Häyhä e o inverno finlandês; Batalha da Ilha Wake; caverna da Tailândia (resgate 2018). Motivacionais: disciplina, dor, rotina, recaída, foco, medo, solidão, sono, treino, dinheiro, vício em celular…
+- **Fatos conferidos via WebSearch** (datas, números, nomes). Na dúvida, generalize ("cerca de", "segundo relatos"). Não glorifique violência nem desumanize inimigos: o herói da história é a **resistência humana**.
 - Os 6 vídeos podem ser versões condensadas dos 6 áudios do dia ou temas próprios.
-- Fechamento padrão do áudio: "Isso foi o Forjados. Mantenha-se firme."
+
+### Prender a atenção nos primeiros 2 segundos (obrigatório)
+- **Nada de introdução.** A 1ª fala do vídeo é o gancho, com no máximo 8 palavras, e entra imediatamente. Tipos de gancho: número chocante ("300 homens contra 100 mil."), cena no meio da ação ("A granada caiu aos pés dele."), pergunta provocativa ("Você aguentaria 3 dias sem dormir?"), contradição ("Ele foi recusado pelo exército. Virou herói.").
+- A 1ª cena sempre tem `"video"` (movimento) e um `big` curto e forte (1–3 palavras ou um número).
+- Revelar a lição só no final; no meio, criar tensão ("mas aí...", "o que ninguém esperava...").
+- No áudio do podcast: o 1º parágrafo também é o gancho (1–2 frases), e só depois "Isto é o Forjados." Fechamento: "Isso foi o Forjados. Mantenha-se firme."
+
+### Variar os formatos (rodar ao longo do dia, nunca 2 iguais seguidos)
+1. **História narrada** (cronológica, com clímax) — padrão para batalhas.
+2. **Começo pelo fim** — abre no clímax e volta: "Como ele chegou aqui?".
+3. **3 lições de…** (uma batalha/um personagem) — cenas numeradas no `kicker` ("LIÇÃO 1").
+4. **Você sabia?** — fato histórico surpreendente + virada motivacional.
+5. **Contagem / números** — cada cena um número grande no `big` (dias, quilômetros, homens, horas).
+6. **Chamado direto (motivacional)** — segunda pessoa, ritmo de treino, frases de 3–6 palavras.
+7. **Desafio do dia** — termina com uma tarefa concreta para hoje ("Comente FEITO quando terminar").
+- Nas legendas dos posts, termine com uma pergunta ou chamada para comentar (engajamento).
 - **Não repetir temas**: consulte e atualize `producao/temas_usados.md`.
 
 ## Infra
