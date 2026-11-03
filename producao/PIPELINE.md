@@ -11,7 +11,7 @@ python3 producao/scripts/publicar_dia.py producao/diario/AAAA-MM-DD
 
 O script gera os MP3/MP4 que faltam em `producao/diario/AAAA-MM-DD/saida/` (essa pasta NÃO vai para o git),
 publica os 6 vídeos + `legendas-tiktok.txt` no branch **`tiktok`** (só o dia atual; um commit e um push por vídeo, porque envios grandes falham),
-copia os áudios em 64 kbps para `episodios/AAAA-MM-DD-aN.mp3` (servidos pelo GitHub Pages) e atualiza `episodios.json`, `feed.xml`, `index.html` e `tiktok.html` (página fixa dos vídeos do dia: https://marcopmloa-commits.github.io/forjados-podcast/tiktok.html).
+copia os áudios em 64 kbps para `episodios/AAAA-MM-DD-aN.mp3` (servidos pelo GitHub Pages) e atualiza `episodios.json` (cada episódio com horário de liberação 6h/9h/12h/15h/18h/21h; o GitHub Actions `.github/workflows/liberar-episodios.yml` solta um por vez no feed), `feed.xml`, `index.html` e `tiktok.html` (página fixa dos vídeos do dia: https://marcopmloa-commits.github.io/forjados-podcast/tiktok.html).
 Depois: `git add -A` (o .gitignore já exclui `saida/`), commit e push em `main`.
 (GitHub Releases não são permitidas nestas sessões.)
 

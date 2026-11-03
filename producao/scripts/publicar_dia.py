@@ -48,7 +48,9 @@ eps = [e for e in S.carregar() if not e["id"].startswith(f"forjados-{dia}-")]
 for i, a in enumerate(audios):
     cfg = json.load(open(a, encoding="utf-8")); nome = os.path.basename(a)[:-5] + ".mp3"; mp3 = os.path.join(RAIZ, "episodios", f"{dia}-{nome}")
     dur = float(subprocess.run(["ffprobe","-v","error","-show_entries","format=duration","-of","csv=p=0",mp3],capture_output=True,text=True).stdout)
-    hora = datetime.datetime.fromisoformat(f"{dia}T08:00:00+00:00") + datetime.timedelta(minutes=i)
+    HORARIOS = ["06:00", "09:00", "12:00", "15:00", "18:00", "21:00"]   # liberação no feed (horário de Brasília)
+    hh = HORARIOS[i] if i < len(HORARIOS) else f"{min(21 + i - 5, 23):02d}:30"
+    hora = datetime.datetime.fromisoformat(f"{dia}T{hh}:00-03:00")
     eps.append({"id": f"forjados-{dia}-{nome[:-4]}", "titulo": cfg["titulo"], "descricao": cfg["descricao"],
         "url": S.BASE + f"episodios/{dia}-{nome}", "bytes": os.path.getsize(mp3), "dur": dur,
         "data": hora.isoformat(), "transcricao": [p for p in cfg["paragrafos"] if p.strip()]})

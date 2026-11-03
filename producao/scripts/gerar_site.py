@@ -7,7 +7,9 @@ def carregar(): return json.load(open(os.path.join(RAIZ, "episodios.json"), enco
 def salvar(eps): json.dump(eps, open(os.path.join(RAIZ, "episodios.json"), "w", encoding="utf-8"), ensure_ascii=False, indent=1)
 def mmss(s): s = int(s); return f"{s//60}:{s%60:02d}"
 def gerar():
-    eps = sorted(carregar(), key=lambda e: e["data"], reverse=True)
+    agora = datetime.datetime.now(datetime.timezone.utc)
+    # só entra no feed/site o que já foi liberado (data <= agora); o resto aguarda o horário
+    eps = sorted([e for e in carregar() if datetime.datetime.fromisoformat(e["data"]) <= agora], key=lambda e: e["data"], reverse=True)
     itens = []
     for e in eps:
         dt = datetime.datetime.fromisoformat(e["data"])
