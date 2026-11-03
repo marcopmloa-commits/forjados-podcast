@@ -12,14 +12,25 @@ def legenda(t):
     t = t.replace(", e ", " e ").replace("espelho,", "espelho")
     for h in HL: t = re.sub(re.escape(h), f'<span class="hl">{h}</span>', t, count=1)
     return t
+def tts(texto, wav):
+    """modelo = caminho .onnx (Piper) ou 'edge:Voz:rate:pitch' (ex.: edge:pt-BR-AntonioNeural:+6%:-8Hz)."""
+    if modelo.startswith("edge:"):
+        _, voz, rate, pitch = modelo.split(":")
+        mp3 = wav[:-4] + ".mp3"
+        cmd = ["edge-tts","--voice",voz,f"--rate={rate}",f"--pitch={pitch}","--text",texto,"--write-media",mp3]
+        if os.environ.get("HTTPS_PROXY"): cmd[1:1] = ["--proxy", os.environ["HTTPS_PROXY"]]
+        subprocess.run(cmd, check=True, stderr=subprocess.DEVNULL)
+        subprocess.run(["ffmpeg","-y","-loglevel","error","-i",mp3,"-ar","24000","-ac","1",wav], check=True)
+    else:
+        subprocess.run([sys.executable,"-m","piper","-m",modelo,"-f",wav,"--length-scale","1.0","--sentence-silence","0.25"],
+                       input=texto.encode(), check=True, stderr=subprocess.DEVNULL)
 cenas = json.load(open(cenas_path, encoding="utf-8")); hues=[18,8,0,28,22,12,30,20,16,6,22]
 frames, clips = [], []
 n = 0
 for i, c in enumerate(cenas):
     for j, f in enumerate(c["falas"]):
         wav = os.path.join(work, f"{n:03d}.wav"); png = os.path.join(work, f"{n:03d}.png")
-        subprocess.run([sys.executable,"-m","piper","-m",modelo,"-f",wav,"--length-scale","1.0","--sentence-silence","0.25"],
-                       input=f.encode(), check=True, stderr=subprocess.DEVNULL)
+        tts(f, wav)
         with wave.open(wav) as w: dur = w.getnframes()/w.getframerate()
         dur += 0.35 if j < len(c["falas"])-1 else 0.6
         frames.append({"out":png,"kicker":c["kicker"],"big":c["big"],"cap":"" if c.get("outro") else legenda(f),
