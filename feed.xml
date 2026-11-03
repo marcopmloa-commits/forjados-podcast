@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd" xmlns:atom="http://www.w3.org/2005/Atom">
+<channel>
+<title>Forjados</title><link>https://marcopmloa-commits.github.io/forjados-podcast/</link><language>pt-br</language>
+<atom:link href="https://marcopmloa-commits.github.io/forjados-podcast/feed.xml" rel="self" type="application/rss+xml"/>
+<description>Operações especiais, histórias reais e a mentalidade de quem decidiu não desistir. David Goggins, forças especiais, histórias de combate e motivação militar.</description>
+<itunes:author>Forjados</itunes:author><itunes:explicit>false</itunes:explicit>
+<itunes:image href="https://marcopmloa-commits.github.io/forjados-podcast/capa.jpg"/><image><url>https://marcopmloa-commits.github.io/forjados-podcast/capa.jpg</url><title>Forjados</title><link>https://marcopmloa-commits.github.io/forjados-podcast/</link></image>
+<itunes:category text="History"/><itunes:category text="Health &amp; Fitness"/><itunes:type>episodic</itunes:type>
+<item><title>Ep. 01 — David Goggins: o homem que ninguém conseguia quebrar</title><description>De quase 135 kg matando baratas de madrugada a Navy SEAL, Ranger e ultramaratonista. A história de David Goggins e as ferramentas mentais que ele criou: o espelho da responsabilidade, o pote de biscoitos e a regra dos 40%.</description>
+<enclosure url="https://marcopmloa-commits.github.io/forjados-podcast/episodios/ep01.mp3" length="7026951" type="audio/mpeg"/>
+<guid isPermaLink="false">forjados-ep01</guid><pubDate>Tue, 03 Nov 2026 12:00:00 +0000</pubDate><itunes:duration>585</itunes:duration>
+<itunes:episode>1</itunes:episode><itunes:explicit>false</itunes:explicit></item>
+</channel></rss>
