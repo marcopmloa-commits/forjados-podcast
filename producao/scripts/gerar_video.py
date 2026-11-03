@@ -39,7 +39,7 @@ for k, (wav, png, dur, t0, bgpng, tcena, clip) in enumerate(clips):
     mp4 = os.path.join(work, f"{k:03d}.mp4")
     if clip:  # fundo em vídeo: P&B, contraste, cortado em 9:16, continua do ponto da cena
         subprocess.run(["ffmpeg","-y","-loglevel","error","-stream_loop","-1","-ss",f"{t0:.2f}","-i",clip,"-loop","1","-i",png,"-filter_complex",
-            "[0:v]fps=30,scale=1080:1920:force_original_aspect_ratio=increase,crop=1080:1920,hue=s=0,eq=contrast=1.25:brightness=-0.09,noise=alls=10:allf=t,setsar=1[b];"
+            "[0:v]fps=30,scale=1080:1920:force_original_aspect_ratio=increase,crop=1080:1920,hue=s=0,eq=contrast=1.25:brightness=-0.09,setsar=1[b];"
             "[b][1:v]overlay=0:0:format=auto,format=yuv420p","-an",
             "-frames:v",str(fr),"-c:v","libx264","-preset","veryfast","-crf","21",mp4], check=True)
     else:
@@ -57,6 +57,6 @@ subprocess.run(["ffmpeg","-y","-loglevel","error","-i",os.path.join(work,"v.mp4"
   "-filter_complex","[1:a]aresample=44100,highpass=f=70,acompressor=threshold=-18dB:ratio=3[v];"
   "[2:a][3:a][4:a]amix=inputs=3,lowpass=f=300,aresample=44100,tremolo=f=1.1:d=0.5,volume=0.07[bg];"
   f"[v][bg]amix=inputs=2:duration=first:normalize=0,afade=t=out:st={D-1.5:.2f}:d=1.5,loudnorm=I=-14:TP=-1.5[a]",
-  "-map","0:v","-map","[a]","-c:v","copy","-c:a","aac","-b:a","160k","-ar","44100","-shortest","-movflags","+faststart",saida], check=True)
+  "-map","0:v","-map","[a]","-c:v","libx264","-preset","medium","-crf","24","-maxrate","1500k","-bufsize","3M","-pix_fmt","yuv420p","-c:a","aac","-b:a","160k","-ar","44100","-shortest","-movflags","+faststart",saida], check=True)
 json.dump({"duracao": round(D, 1), "creditos": sorted(set(creditos))}, open(saida[:-4] + ".json", "w"), ensure_ascii=False)
 print(f"ok {saida} {D:.1f}s")

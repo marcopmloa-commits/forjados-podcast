@@ -18,25 +18,25 @@ for v in videos:
     cfg = json.load(open(v, encoding="utf-8")); meta = json.load(open(mp4[:-4] + ".json", encoding="utf-8"))
     legendas.append(f"=== {os.path.basename(mp4)} — {cfg['titulo']} ({meta['duracao']:.0f}s) ===\n{cfg['legenda_post']}\n\nCréditos das fotos: {'; '.join(meta['creditos'])}\n")
 open(os.path.join(out, "legendas-tiktok.txt"), "w", encoding="utf-8").write("\n".join(legendas))
-# vídeos -> branch "tiktok" (só os últimos 3 dias; força o push para não acumular histórico)
+# vídeos -> branch "tiktok": só o dia atual; um commit/push por vídeo (envios grandes demais falham no proxy)
 RAIZ = S.RAIZ
-tk = os.path.join(out, "_tiktok"); subprocess.run(["rm", "-rf", tk]); os.makedirs(tk)
+tk = os.path.join(out, "_tiktok"); subprocess.run(["rm", "-rf", tk]); os.makedirs(os.path.join(tk, dia))
 url = subprocess.run(["git", "-C", RAIZ, "remote", "get-url", "origin"], capture_output=True, text=True).stdout.strip()
-subprocess.run(["git", "init", "-q", "-b", "tiktok", tk], check=True)
-if subprocess.run(["git", "-C", tk, "fetch", "-q", "--depth", "1", url, "tiktok"]).returncode == 0:
-    subprocess.run(["git", "-C", tk, "checkout", "-q", "FETCH_HEAD", "--", "."], check=True)
-    subprocess.run(["rm", "-rf", os.path.join(tk, ".git")]); subprocess.run(["git", "init", "-q", "-b", "tiktok", tk], check=True)
-dias = sorted(d for d in os.listdir(tk) if d[:2] == "20" and d != dia)
-for velho in dias[:-2]: subprocess.run(["rm", "-rf", os.path.join(tk, velho)])
-os.makedirs(os.path.join(tk, dia), exist_ok=True)
-for f in glob.glob(os.path.join(out, "*.mp4")) + [os.path.join(out, "legendas-tiktok.txt")]:
-    subprocess.run(["cp", f, os.path.join(tk, dia)], check=True)
-open(os.path.join(tk, "README.md"), "w").write("# Vídeos do TikTok — Forjados\n\nUma pasta por dia (últimos 3 dias). Abra o vídeo e toque em *Download raw file*. Texto dos posts em `legendas-tiktok.txt`.\n")
 uid = subprocess.run(["gh", "api", "user", "--jq", ".id"], capture_output=True, text=True).stdout.strip()
 autor = ["-c", "user.name=marcopmloa-commits", "-c", f"user.email={uid}+marcopmloa-commits@users.noreply.github.com"]
-subprocess.run(["git", "-C", tk, "add", "-A"], check=True)
-subprocess.run(["git", "-C", tk] + autor + ["commit", "-q", "-m", f"Vídeos TikTok {dia}"], check=True)
-subprocess.run(["git", "-C", tk, "push", "-q", "-f", url, "tiktok"], check=True)
+def git(*a, **k): return subprocess.run(["git", "-C", tk] + list(a), **k)
+def enviar(forcar=False):
+    for t in range(4):
+        if git("push", "-q", *(["-f"] if forcar else []), url, "tiktok").returncode == 0: return
+        print(f"[tiktok] push falhou, tentativa {t+1}", file=sys.stderr); subprocess.run(["sleep", str(5 * (t + 1))])
+    raise RuntimeError("push do branch tiktok falhou")
+git("init", "-q", "-b", "tiktok", check=True)
+open(os.path.join(tk, "README.md"), "w").write(f"# Vídeos do TikTok — Forjados\n\nPasta `{dia}`: abra o vídeo e toque em *Download raw file*. Texto dos posts em `legendas-tiktok.txt`.\n")
+subprocess.run(["cp", os.path.join(out, "legendas-tiktok.txt"), os.path.join(tk, dia)], check=True)
+git("add", "-A", check=True); git(*autor, "commit", "-q", "-m", f"TikTok {dia}: legendas", check=True); enviar(forcar=True)
+for f in sorted(glob.glob(os.path.join(out, "*.mp4"))):
+    subprocess.run(["cp", f, os.path.join(tk, dia)], check=True)
+    git("add", "-A", check=True); git(*autor, "commit", "-q", "-m", f"TikTok {dia}: {os.path.basename(f)}", check=True); enviar()
 # áudios -> site (64 kbps)
 os.makedirs(os.path.join(RAIZ, "episodios"), exist_ok=True)
 for a in audios:
