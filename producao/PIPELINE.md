@@ -45,9 +45,19 @@ Depois: `git add -A` (o .gitignore já exclui `saida/`), commit e push em `main`
 - **Fatos conferidos via WebSearch** (datas, números, nomes). Na dúvida, generalize ("cerca de", "segundo relatos"). Não glorifique violência nem desumanize inimigos: o herói da história é a **resistência humana**.
 - Os 6 vídeos podem ser versões condensadas dos 6 áudios do dia ou temas próprios.
 
+### Mídias com relação e contexto (obrigatório — o dono cobra isso)
+- **Histórias reais: imagens de arquivo DO PRÓPRIO FATO** via Wikimedia Commons: `"fonte": "wikimedia"`. Ex.: FEB → fotos da FEB na Itália, o distintivo da **Cobra Fumando**, Monte Castelo, Mascarenhas de Moraes; Desmond Doss → fotos dele e de Okinawa; Termópilas → o local, estátua de Leônidas, pinturas históricas (ex.: "Leonidas at Thermopylae" de David).
+- Melhor ainda: ache o arquivo exato com WebSearch/no Commons e use `"img": "File:Nome_exato.jpg"` com `"fonte": "wikimedia"`.
+- Sempre coloque `"img_reserva"` (busca genérica na Pixabay, ex.: "vintage soldiers mud") para o caso de o Commons não responder.
+- Fotos do Commons aparecem **inteiras** (sem corte), sobre fundo desfocado — automático.
+- **Nunca** use foto/clipe que contradiga a história: soldado moderno numa história da 2ª Guerra, uniforme de outro país, época errada, pessoas aleatórias no lugar do personagem. Na dúvida, prefira mapa, local, paisagem ou objeto da época a uma pessoa errada.
+- Clipes de vídeo (`"video"`) em histórias só quando combinam com a época/lugar (neve, lama, mar revolto, fogo, explosão distante, montanha). Para gancho de história, uma foto de arquivo forte também vale.
+- Ao conferir o vídeo (passo 6 da tarefa diária), troque qualquer cena com imagem fora de contexto.
+- Chave do Commons: `WIKIMEDIA_TOKEN` (variável do ambiente) ou `~/.wikimedia_token`. Sem ela o Commons costuma recusar (erro 429) por limite de IP compartilhado.
+
 ### Prender a atenção nos primeiros 2 segundos (obrigatório)
 - **Nada de introdução.** A 1ª fala do vídeo é o gancho, com no máximo 8 palavras, e entra imediatamente. Tipos de gancho: número chocante ("300 homens contra 100 mil."), cena no meio da ação ("A granada caiu aos pés dele."), pergunta provocativa ("Você aguentaria 3 dias sem dormir?"), contradição ("Ele foi recusado pelo exército. Virou herói.").
-- A 1ª cena sempre tem `"video"` (movimento) e um `big` curto e forte (1–3 palavras ou um número).
+- A 1ª cena tem `"video"` (movimento) — ou, em história, a foto de arquivo mais forte do fato — e um `big` curto e forte (1–3 palavras ou um número).
 - Revelar a lição só no final; no meio, criar tensão ("mas aí...", "o que ninguém esperava...").
 - No áudio do podcast: o 1º parágrafo também é o gancho (1–2 frases), e só depois "Isto é o Forjados." Fechamento: "Isso foi o Forjados. Mantenha-se firme."
 

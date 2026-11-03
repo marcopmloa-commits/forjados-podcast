@@ -11,16 +11,18 @@ frames, clips, creditos = [], [], []
 n = 0
 cenas = cfg["cenas"] + [{"outro": True, "falas": [cfg.get("fala_final", "Forjados. Episódios completos no Spotify. Siga para mais.")]}]
 for i, c in enumerate(cenas):
-    img, cred, clip = None, "", None
+    img, cred, clip, inteira = None, "", None, False
     if c.get("video"):
         r = buscar_video(c["video"], os.path.join(work, "vid"))
         if r: clip, cred = r["arquivo"], r["credito"]; creditos.append(cred)
     if c.get("img") and not clip:
         r = buscar(c["img"], os.path.join(work, "img"), 1, c.get("fonte", "auto"))
+        if not r and c.get("img_reserva"): r = buscar(c["img_reserva"], os.path.join(work, "img"), 1, "pixabay")
         if r: img, cred = r[0]["arquivo"], r[0]["credito"]; creditos.append(cred)
+        inteira = c.get("inteira", "Wikimedia" in cred)
     if c.get("outro") and not img:
         img = cfg.get("_ultima_img")
-    bgpng = os.path.join(work, f"bg{i:02d}.png"); frames.append({"out": bgpng, "layer": "bg", "img": img})
+    bgpng = os.path.join(work, f"bg{i:02d}.png"); frames.append({"out": bgpng, "layer": "bg", "img": img, "inteira": inteira})
     t_cena = 0.0; ini = len(clips)
     for j, f in enumerate(c["falas"]):
         wav = os.path.join(work, f"{n:03d}.wav"); png = os.path.join(work, f"{n:03d}.png")

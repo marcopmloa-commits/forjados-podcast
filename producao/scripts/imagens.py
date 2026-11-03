@@ -1,12 +1,25 @@
 """Busca e baixa fotos reais (Pixabay; Wikimedia Commons como reserva).
 uso: python3 imagens.py "consulta em ingles" pasta_saida [n]  -> imprime JSON [{arquivo, credito}]"""
 import json, os, sys, urllib.request, urllib.parse, ssl, random
-UA = "ForjadosPodcast/1.0 (https://marcopmloa-commits.github.io/forjados-podcast/)"
+UA = "ForjadosPodcast/1.0 (https://marcopmloa-commits.github.io/forjados-podcast/; forjadosclaude@gmail.com)"
+def _token_wiki():
+    t = os.environ.get("WIKIMEDIA_TOKEN")
+    if not t:
+        p = os.path.expanduser("~/.wikimedia_token")
+        if os.path.exists(p): t = open(p).read().strip()
+    return t
 def _get(url, raw=False):
-    req = urllib.request.Request(url, headers={"User-Agent": UA})
-    with urllib.request.urlopen(req, timeout=40) as r:
-        d = r.read()
-    return d if raw else json.loads(d)
+    import time, urllib.error
+    h = {"User-Agent": UA}
+    if "wikimedia.org" in url and _token_wiki(): h["Authorization"] = "Bearer " + _token_wiki()
+    for t in range(4):
+        try:
+            with urllib.request.urlopen(urllib.request.Request(url, headers=h), timeout=40) as r:
+                d = r.read()
+            return d if raw else json.loads(d)
+        except urllib.error.HTTPError as e:
+            if e.code != 429 or t == 3: raise
+            time.sleep(5 * (t + 1))
 def chave():
     k = os.environ.get("PIXABAY_KEY")
     if not k:
@@ -30,14 +43,22 @@ def pixabay(q, n):
     top = [h for h in hits if nota(h) == melhor][: max(n * 3, 3)]; random.shuffle(top)
     return [(h["largeImageURL"], f'Foto: {h["user"]} / Pixabay') for h in top[:n]]
 def wikimedia(q, n):
-    url = "https://commons.wikimedia.org/w/api.php?" + urllib.parse.urlencode({"action": "query", "format": "json", "generator": "search",
-        "gsrsearch": f"filetype:bitmap {q}", "gsrnamespace": 6, "gsrlimit": 20, "prop": "imageinfo", "iiprop": "url|extmetadata", "iiurlwidth": 1600})
-    pages = list(_get(url).get("query", {}).get("pages", {}).values()); random.shuffle(pages)
+    """q = busca livre ou nome exato de arquivo do Commons ("File:Nome.jpg")."""
+    import re
+    api = "https://commons.wikimedia.org/w/api.php?"
+    base = {"action": "query", "format": "json", "prop": "imageinfo", "iiprop": "url|extmetadata|size|mime", "iiurlwidth": 1600}
+    if q.startswith("File:"):
+        params = dict(base, titles=q)
+    else:
+        params = dict(base, generator="search", gsrsearch=f"filetype:bitmap {q}", gsrnamespace=6, gsrlimit=25)
+    pages = list(_get(api + urllib.parse.urlencode(params)).get("query", {}).get("pages", {}).values())
+    pages = [p for p in pages if p.get("imageinfo") and p["imageinfo"][0].get("mime") in ("image/jpeg", "image/png", "image/tiff")]
+    pages.sort(key=lambda p: (p.get("index", 0), -p["imageinfo"][0].get("height", 0)))
+    top = pages[: max(n * 2, 3)] if not q.startswith("File:") else pages; random.shuffle(top)
     out = []
-    for p in pages[:n]:
+    for p in top[:n]:
         ii = p["imageinfo"][0]; md = ii.get("extmetadata", {})
-        autor = md.get("Artist", {}).get("value", "Wikimedia Commons")
-        import re; autor = re.sub("<[^>]+>", "", autor)[:60]
+        autor = re.sub("<[^>]+>", "", md.get("Artist", {}).get("value", "Wikimedia Commons"))[:60].strip()
         lic = md.get("LicenseShortName", {}).get("value", "")
         out.append((ii.get("thumburl") or ii["url"], f"Foto: {autor} / Wikimedia Commons ({lic})"))
     return out

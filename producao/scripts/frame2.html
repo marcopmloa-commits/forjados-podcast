@@ -3,6 +3,7 @@
 <style>
 html,body{margin:0;width:1080px;height:1920px;background:#000;overflow:hidden;font-family:Oswald,sans-serif;color:#eee}
 #bg{position:absolute;inset:0;background-size:cover;background-position:center;filter:grayscale(1) contrast(1.25) brightness(.72)}
+#bgi{position:absolute;left:40px;right:40px;top:280px;height:740px;background-size:contain;background-repeat:no-repeat;background-position:center;filter:grayscale(1) contrast(1.15) brightness(.9);display:none}
 .shade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.55) 0%,rgba(0,0,0,.05) 30%,rgba(0,0,0,.15) 55%,rgba(0,0,0,.85) 80%,#000 100%)}
 svg.n{position:absolute;inset:0;mix-blend-mode:overlay;opacity:.45}
 .brand{position:absolute;top:140px;left:0;right:0;text-align:center;font-family:Anton;font-size:46px;letter-spacing:12px;color:#e8e2d6}
@@ -20,7 +21,7 @@ svg.n{position:absolute;inset:0;mix-blend-mode:overlay;opacity:.45}
 .outro .l:before,.outro .l:after{content:"";width:120px;height:5px;background:#d4a53a}
 .outro p{font-size:44px;letter-spacing:4px;margin-top:60px;color:#fff}
 </style></head><body>
-<div id="bg"></div><div class="shade"></div>
+<div id="bg"></div><div id="bgi"></div><div class="shade"></div>
 <svg class="n" width="1080" height="1920"><filter id="f"><feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="3" stitchTiles="stitch"/><feColorMatrix type="saturate" values="0"/></filter><rect width="100%" height="100%" filter="url(#f)"/></svg>
 <div class="brand" id="brand">FORJADOS<small>PODCAST</small></div>
 <div class="mid" id="mid"><div class="kicker" id="k"></div><div class="big" id="b"></div></div>
@@ -36,6 +37,8 @@ window.setFrame=async(d)=>{
  document.querySelectorAll('.shade,.brand,.mid,.cap,.cred,.outro').forEach(e=>e.style.visibility=d.layer==='bg'?'hidden':'');
  if(d.img){await new Promise(r=>{const im=new Image();im.onload=im.onerror=r;im.src='file://'+d.img;});}
  document.getElementById('bg').style.backgroundImage=d.img?`url('file://${d.img}')`:'none';
+ const bi=document.getElementById('bgi'); bi.style.display=d.inteira?'block':'none'; bi.style.backgroundImage=d.img?`url('file://${d.img}')`:'none';
+ document.getElementById('bg').style.filter=d.inteira?'grayscale(1) blur(28px) brightness(.45)':'';
  const k=document.getElementById('k');k.textContent=d.kicker||'';k.style.display=d.kicker?'inline-block':'none';
  const b=document.getElementById('b');b.textContent=d.big||'';const L=(d.big||'').length;
  b.style.fontSize=(L<=5?260:L<=9?190:L<=14?140:L<=22?110:90)+'px';
