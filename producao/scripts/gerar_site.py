@@ -21,7 +21,7 @@ def gerar():
 <description>Operações especiais, histórias reais e a mentalidade de quem decidiu não desistir. Motivação, disciplina e histórias de guerreiros.</description>
 <itunes:author>Forjados</itunes:author><itunes:owner><itunes:name>Forjados</itunes:name><itunes:email>{EMAIL}</itunes:email></itunes:owner>
 <managingEditor>{EMAIL} (Forjados)</managingEditor><itunes:explicit>false</itunes:explicit>
-<itunes:image href="{BASE}capa.jpg"/><image><url>{BASE}capa.jpg</url><title>Forjados</title><link>{BASE}</link></image>
+<itunes:image href="{BASE}capa-v2.jpg"/><image><url>{BASE}capa-v2.jpg</url><title>Forjados</title><link>{BASE}</link></image>
 <itunes:category text="Health &amp; Fitness"/><itunes:category text="History"/><itunes:type>episodic</itunes:type>
 {''.join(itens)}
 </channel></rss>"""
@@ -34,7 +34,7 @@ def gerar():
 {'<details><summary>TRANSCRIÇÃO</summary><div class="tr">'+tr+'</div></details>' if tr else ''}</article>""")
     page = f"""<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Forjados — Podcast</title><meta name="description" content="Operações especiais, histórias reais e mentalidade militar.">
-<link rel="alternate" type="application/rss+xml" title="Forjados" href="feed.xml"><meta property="og:image" content="{BASE}capa.jpg">
+<link rel="alternate" type="application/rss+xml" title="Forjados" href="feed.xml"><meta property="og:image" content="{BASE}capa-v2.jpg">
 <link href="https://fonts.googleapis.com/css2?family=Anton&family=Oswald:wght@400;600&family=Inter:wght@400;600&display=swap" rel="stylesheet">
 <style>:root{{--bg:#0b0b0b;--fg:#ece8e0;--mut:#a39d93;--ac:#d4a53a;--card:#151515}}
 body{{margin:0;background:var(--bg);color:var(--fg);font-family:Inter,sans-serif;line-height:1.65}}
@@ -45,7 +45,7 @@ header img{{width:220px;max-width:100%;border-radius:10px}} h1{{font-family:Anto
 .ep{{background:var(--card);border:1px solid #262626;border-radius:12px;padding:24px;margin-top:28px}}
 .ep h2{{font-family:Oswald;font-weight:600;font-size:24px;margin:0 0 6px}} .meta{{color:var(--mut);font-size:14px}} audio{{width:100%;margin:14px 0}}
 details summary{{cursor:pointer;color:var(--ac);font-family:Oswald;letter-spacing:2px}} .tr p{{margin:0 0 12px}}</style></head><body><div class="w">
-<header><img src="capa.jpg" alt="Capa do podcast Forjados"><div><div class="tag">PODCAST</div><h1>FORJADOS</h1>
+<header><img src="capa-v2.jpg" alt="Capa do podcast Forjados"><div><div class="tag">PODCAST</div><h1>FORJADOS</h1>
 <p>Operações especiais, histórias reais e a mentalidade de quem decidiu não desistir.</p><div class="btns"><a href="feed.xml">Feed RSS</a></div></div></header>
 {''.join(cards)}</div></body></html>"""
     open(os.path.join(RAIZ, "index.html"), "w", encoding="utf-8").write(page)

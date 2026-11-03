@@ -36,6 +36,8 @@ Depois: `git add -A` (o .gitignore já exclui `saida/`), commit e push em `main`
 
 ## Linha editorial
 
+- **Máximo de 5 hashtags por post** (`legenda_post`). Sempre incluir `#forjados`; as outras 4, ligadas ao tema do vídeo.
+
 - Tom: cru, direto, segunda pessoa, frases curtas, no estilo dos discursos motivacionais de operações especiais (tipo David Goggins).
 - **Texto 100% original.** Não imitar nem se passar por pessoas reais; não transcrever discursos/livros. Citar alguém só com fatos verificáveis e sem aspas longas.
 - Mistura recomendada por dia: 3 motivacionais (disciplina, dor, rotina, recaída, foco, medo, solidão, sono, treino, dinheiro, vício em celular…) + 2 histórias (forças especiais, missões famosas, seleções militares, atletas de ultraresistência, figuras históricas) — fatos conferidos via busca; na dúvida, generalize.
