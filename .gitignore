@@ -1,2 +1,3 @@
 producao/diario/*/saida/
 *_build/
+__pycache__/
