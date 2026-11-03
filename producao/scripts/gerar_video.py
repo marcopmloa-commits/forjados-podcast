@@ -2,7 +2,7 @@
 import json, os, subprocess, sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from comum import tts, destaca, trilha, VOZ_VIDEO
-from imagens import buscar
+from imagens import buscar, buscar_video
 SCR = os.path.dirname(os.path.abspath(__file__))
 cfg = json.load(open(sys.argv[1], encoding="utf-8")); saida = os.path.abspath(sys.argv[2])
 work = saida[:-4] + "_build"; os.makedirs(work, exist_ok=True)
@@ -11,8 +11,11 @@ frames, clips, creditos = [], [], []
 n = 0
 cenas = cfg["cenas"] + [{"outro": True, "falas": [cfg.get("fala_final", "Forjados. Episódios completos no Spotify. Siga para mais.")]}]
 for i, c in enumerate(cenas):
-    img, cred = None, ""
-    if c.get("img"):
+    img, cred, clip = None, "", None
+    if c.get("video"):
+        r = buscar_video(c["video"], os.path.join(work, "vid"))
+        if r: clip, cred = r["arquivo"], r["credito"]; creditos.append(cred)
+    if c.get("img") and not clip:
         r = buscar(c["img"], os.path.join(work, "img"), 1, c.get("fonte", "auto"))
         if r: img, cred = r[0]["arquivo"], r[0]["credito"]; creditos.append(cred)
     if c.get("outro") and not img:
@@ -24,17 +27,23 @@ for i, c in enumerate(cenas):
         dur = tts(f, wav, voz) + (0.12 if j < len(c["falas"]) - 1 else 0.3)
         frames.append({"out": png, "layer": "fg", "img": img, "kicker": c.get("kicker", ""), "big": c.get("big", ""),
                        "cap": "" if c.get("outro") else destaca(f), "credito": cred, "outro": bool(c.get("outro"))})
-        clips.append([wav, png, dur, t_cena, bgpng, 0]); t_cena += dur; n += 1
+        clips.append([wav, png, dur, t_cena, bgpng, 0, clip]); t_cena += dur; n += 1
     for cl in clips[ini:]: cl[5] = t_cena
     if img: cfg["_ultima_img"] = img
 json.dump(frames, open(os.path.join(work, "frames.json"), "w"))
 subprocess.run(["node", os.path.join(SCR, "render_frames.js"), os.path.join(work, "frames.json"), "frame2.html"], check=True)
 lv = open(os.path.join(work, "v.txt"), "w"); la = open(os.path.join(work, "a.txt"), "w"); D = 0
-for k, (wav, png, dur, t0, bgpng, tcena) in enumerate(clips):
+for k, (wav, png, dur, t0, bgpng, tcena, clip) in enumerate(clips):
     fr = int(dur * 30); D += fr / 30
     passo = 0.05 / max(tcena * 30, 1); z0 = 1.0 + passo * t0 * 30   # zoom contínuo na cena, máx. 5%
     mp4 = os.path.join(work, f"{k:03d}.mp4")
-    subprocess.run(["ffmpeg","-y","-loglevel","error","-loop","1","-i",bgpng,"-loop","1","-i",png,"-filter_complex",
+    if clip:  # fundo em vídeo: P&B, contraste, cortado em 9:16, continua do ponto da cena
+        subprocess.run(["ffmpeg","-y","-loglevel","error","-stream_loop","-1","-ss",f"{t0:.2f}","-i",clip,"-loop","1","-i",png,"-filter_complex",
+            "[0:v]fps=30,scale=1080:1920:force_original_aspect_ratio=increase,crop=1080:1920,hue=s=0,eq=contrast=1.25:brightness=-0.09,noise=alls=10:allf=t,setsar=1[b];"
+            "[b][1:v]overlay=0:0:format=auto,format=yuv420p","-an",
+            "-frames:v",str(fr),"-c:v","libx264","-preset","veryfast","-crf","21",mp4], check=True)
+    else:
+      subprocess.run(["ffmpeg","-y","-loglevel","error","-loop","1","-i",bgpng,"-loop","1","-i",png,"-filter_complex",
         f"[0:v]scale=2160:3840,zoompan=z='{z0:.5f}+{passo:.7f}*on':x='iw/2-(iw/zoom/2)':y='ih/2-(ih/zoom/2)':d={fr}:s=1080x1920:fps=30[b];"
         f"[b][1:v]overlay=0:0:format=auto,format=yuv420p",
         "-frames:v",str(fr),"-c:v","libx264","-preset","veryfast","-crf","21",mp4], check=True)

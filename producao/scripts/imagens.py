@@ -60,3 +60,30 @@ def buscar(q, pasta, n=1, fonte="auto"):
     return saida
 if __name__ == "__main__":
     print(json.dumps(buscar(sys.argv[1], sys.argv[2], int(sys.argv[3]) if len(sys.argv) > 3 else 1), ensure_ascii=False, indent=1))
+
+RUIM_V = {"toy","cartoon","illustration","animation","3d","render","game","virtual","roman","fantasy","anime","costume","lego","doll"}
+def buscar_video(q, pasta, dur_min=4):
+    """Clipe vertical/horizontal da Pixabay -> {arquivo, credito} ou None."""
+    k = chave()
+    if not k: return None
+    url = "https://pixabay.com/api/videos/?" + urllib.parse.urlencode({"key": k, "q": q, "per_page": 30, "safesearch": "true"})
+    try: hits = _get(url).get("hits", [])
+    except Exception as e: print(f"[videos] busca falhou: {e}", file=sys.stderr); return None
+    pal = [w for w in q.lower().split() if len(w) > 2]
+    def nota(h):
+        tags = h["tags"].lower().replace(",", " ").split()
+        if any(b in tags for b in RUIM_V) or h.get("duration", 0) < dur_min: return -1
+        return sum(w in " ".join(tags) for w in pal)
+    hits = [h for h in hits if nota(h) >= 0]
+    if not hits: return None
+    melhor = max(nota(h) for h in hits); top = [h for h in hits if nota(h) == melhor][:3]; random.shuffle(top)
+    os.makedirs(pasta, exist_ok=True)
+    for h in top:
+        v = h["videos"].get("medium") or h["videos"].get("small")
+        if not v or not v.get("url"): continue
+        nome = os.path.join(pasta, f"v{h['id']}.mp4")
+        try:
+            open(nome, "wb").write(_get(v["url"], raw=True))
+            return {"arquivo": nome, "credito": f"Vídeo: {h['user']} / Pixabay"}
+        except Exception as e: print(f"[videos] download falhou: {e}", file=sys.stderr)
+    return None
