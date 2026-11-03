@@ -19,7 +19,7 @@ def pixabay(q, n):
     url = "https://pixabay.com/api/?" + urllib.parse.urlencode({"key": k, "q": q, "image_type": "photo", "per_page": 30, "safesearch": "true", "min_height": 1200})
     hits = _get(url).get("hits", [])
     # prefere retrato/alta resolução, varia a escolha
-    ruim = {"toy","toys","cartoon","illustration","figurine","nutcracker","lego","doll","miniature","game","render","3d","drawing","costume","roman","fantasy","anime","saxophone","music"}
+    ruim = {"skating","skater","dance","dancer","ballet","anatomy","toy","toys","cartoon","illustration","figurine","nutcracker","lego","doll","miniature","game","render","3d","drawing","costume","roman","fantasy","anime","saxophone","music"}
     pal = [w for w in q.lower().split() if len(w) > 2]
     def nota(h):
         tags = h["tags"].lower().replace(",", " ").split()
@@ -61,7 +61,7 @@ def buscar(q, pasta, n=1, fonte="auto"):
 if __name__ == "__main__":
     print(json.dumps(buscar(sys.argv[1], sys.argv[2], int(sys.argv[3]) if len(sys.argv) > 3 else 1), ensure_ascii=False, indent=1))
 
-RUIM_V = {"toy","cartoon","illustration","animation","3d","render","game","virtual","roman","fantasy","anime","costume","lego","doll"}
+RUIM_V = {"anatomy","skeleton","xray","x-ray","hologram","digital","futuristic","sci-fi","abstract","skating","skater","dance","dancer","toy","cartoon","illustration","animation","3d","render","game","virtual","roman","fantasy","anime","costume","lego","doll"}
 def buscar_video(q, pasta, dur_min=4):
     """Clipe vertical/horizontal da Pixabay -> {arquivo, credito} ou None."""
     k = chave()
