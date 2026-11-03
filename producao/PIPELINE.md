@@ -1,6 +1,6 @@
 # Forjados — produção diária
 
-Todo dia: **5 episódios de áudio (~3 min)** para o podcast + **5 vídeos verticais (~2 min)** para o TikTok.
+Todo dia: **6 episódios de áudio (~3 min)** para o podcast + **6 vídeos verticais (~2 min)** para o TikTok.
 
 ## Como rodar um dia
 
@@ -10,22 +10,22 @@ python3 producao/scripts/publicar_dia.py producao/diario/AAAA-MM-DD
 ```
 
 O script gera os MP3/MP4 que faltam em `producao/diario/AAAA-MM-DD/saida/` (essa pasta NÃO vai para o git),
-publica os 5 vídeos + `legendas-tiktok.txt` no branch **`tiktok`** (pasta do dia; só os últimos 3 dias, push forçado),
+publica os 6 vídeos + `legendas-tiktok.txt` no branch **`tiktok`** (pasta do dia; só os últimos 3 dias, push forçado),
 copia os áudios em 64 kbps para `episodios/AAAA-MM-DD-aN.mp3` (servidos pelo GitHub Pages) e atualiza `episodios.json`, `feed.xml` e `index.html`.
 Depois: `git add -A` (o .gitignore já exclui `saida/`), commit e push em `main`.
 (GitHub Releases não são permitidas nestas sessões.)
 
-**Espaço:** o GitHub Pages aceita ~1 GB → ~8,5 MB/dia de áudio ≈ 4 meses. Quando `du -sh episodios` passar de 850 MB, avise o dono.
+**Espaço:** o GitHub Pages aceita ~1 GB → ~10 MB/dia de áudio ≈ 3 meses. Quando `du -sh episodios` passar de 850 MB, avise o dono.
 
 ## Formato dos arquivos do dia
 
-`audios/a1.json … a5.json`
+`audios/a1.json … a6.json`
 ```json
 {"titulo": "...", "descricao": "1–2 frases", "paragrafos": ["Forjados.", "...", "", "...", "Isso foi o Forjados. Mantenha-se firme."]}
 ```
 - **370–400 palavras** no total (= ~3 min com a voz padrão; 438 palavras deram 3min28). `""` = pausa de 1 s.
 
-`videos/v1.json … v5.json`
+`videos/v1.json … v6.json`
 ```json
 {"titulo": "...", "legenda_post": "texto do post + hashtags",
  "cenas": [{"img": "busca em INGLÊS para a foto", "kicker": "RÓTULO CURTO", "big": "2–3 PALAVRAS", "falas": ["frase 1", "frase 2", "frase 3"]}]}
@@ -41,8 +41,8 @@ Depois: `git add -A` (o .gitignore já exclui `saida/`), commit e push em `main`
 
 - Tom: cru, direto, segunda pessoa, frases curtas, no estilo dos discursos motivacionais de operações especiais (tipo David Goggins).
 - **Texto 100% original.** Não imitar nem se passar por pessoas reais; não transcrever discursos/livros. Citar alguém só com fatos verificáveis e sem aspas longas.
-- Mistura recomendada por dia: 3 motivacionais (disciplina, dor, rotina, recaída, foco, medo, solidão, sono, treino, dinheiro, vício em celular…) + 2 histórias (forças especiais, missões famosas, seleções militares, atletas de ultraresistência, figuras históricas) — fatos conferidos via busca; na dúvida, generalize.
-- Os 5 vídeos podem ser versões condensadas dos 5 áudios do dia ou temas próprios.
+- Mistura por dia: 4 motivacionais (disciplina, dor, rotina, recaída, foco, medo, solidão, sono, treino, dinheiro, vício em celular…) + 2 histórias (forças especiais, missões famosas, seleções militares, atletas de ultraresistência, figuras históricas) — fatos conferidos via busca; na dúvida, generalize.
+- Os 6 vídeos podem ser versões condensadas dos 6 áudios do dia ou temas próprios.
 - Fechamento padrão do áudio: "Isso foi o Forjados. Mantenha-se firme."
 - **Não repetir temas**: consulte e atualize `producao/temas_usados.md`.
 
