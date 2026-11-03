@@ -30,7 +30,7 @@ Depois: `git add -A` (o .gitignore já exclui `saida/`), commit e push em `main`
 {"titulo": "...", "legenda_post": "texto do post + hashtags",
  "cenas": [{"img": "busca em INGLÊS para a foto", "kicker": "RÓTULO CURTO", "big": "2–3 PALAVRAS", "falas": ["frase 1", "frase 2", "frase 3"]}]}
 ```
-- **8 cenas × 3 falas, 210–240 palavras** (= ~2 min). Uma foto por cena; a cena final (logo + "Episódios completos no Spotify") é automática.
+- **9 cenas × 3 falas, 260–290 palavras** (= ~2 min com a voz rápida dos vídeos, +18%; 240 palavras deram 1min47). Frases curtas e secas: ritmo é tudo. Uma foto por cena; a cena final (logo + "Episódios completos no Spotify") é automática.
 - `**palavra**` nas falas = destaque dourado na legenda (e é removido da narração).
 - Buscas de imagem: sempre especifique "modern"/"military"/"special forces" quando for soldado ("soldier alone" trouxe um soldado romano). Concretas e visuais ("soldier running beach", "alarm clock dark", "boxer training gym"). Opcional `"fonte": "wikimedia"` para fotos militares reais.
 
@@ -45,7 +45,7 @@ Depois: `git add -A` (o .gitignore já exclui `saida/`), commit e push em `main`
 
 ## Infra
 
-- Voz: Microsoft Edge TTS `pt-BR-AntonioNeural`, rate +4%, pitch −8Hz (`scripts/comum.py`). Reserva offline: Piper.
+- Voz: Microsoft Edge TTS `pt-BR-AntonioNeural` — áudios rate +4%/pitch −8Hz; vídeos rate +18%/pitch −6Hz, pausas curtas (`scripts/comum.py`). O dono achou a fala lenta dos vídeos entediante: manter ritmo rápido. Reserva offline: Piper.
 - Fotos: Pixabay (chave em `PIXABAY_KEY` ou `~/.pixabay_key` — nunca no repositório) → reserva Wikimedia Commons.
 - Domínios que o ambiente precisa: speech.platform.bing.com, pixabay.com, cdn.pixabay.com, commons.wikimedia.org, upload.wikimedia.org, fonts.googleapis.com, fonts.gstatic.com.
 - Site: https://marcopmloa-commits.github.io/forjados-podcast/ · Feed: …/feed.xml (Spotify já cadastrado).
