@@ -1,14 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd" xmlns:atom="http://www.w3.org/2005/Atom">
-<channel>
-<title>Forjados</title><link>https://marcopmloa-commits.github.io/forjados-podcast/</link><language>pt-br</language>
+<channel><title>Forjados</title><link>https://marcopmloa-commits.github.io/forjados-podcast/</link><language>pt-br</language>
 <atom:link href="https://marcopmloa-commits.github.io/forjados-podcast/feed.xml" rel="self" type="application/rss+xml"/>
-<description>Operações especiais, histórias reais e a mentalidade de quem decidiu não desistir. David Goggins, forças especiais, histórias de combate e motivação militar.</description>
-<itunes:author>Forjados</itunes:author><itunes:owner><itunes:name>Forjados</itunes:name><itunes:email>forjadosclaude@gmail.com</itunes:email></itunes:owner><managingEditor>forjadosclaude@gmail.com (Forjados)</managingEditor><itunes:explicit>false</itunes:explicit>
+<description>Operações especiais, histórias reais e a mentalidade de quem decidiu não desistir. Motivação, disciplina e histórias de guerreiros.</description>
+<itunes:author>Forjados</itunes:author><itunes:owner><itunes:name>Forjados</itunes:name><itunes:email>forjadosclaude@gmail.com</itunes:email></itunes:owner>
+<managingEditor>forjadosclaude@gmail.com (Forjados)</managingEditor><itunes:explicit>false</itunes:explicit>
 <itunes:image href="https://marcopmloa-commits.github.io/forjados-podcast/capa.jpg"/><image><url>https://marcopmloa-commits.github.io/forjados-podcast/capa.jpg</url><title>Forjados</title><link>https://marcopmloa-commits.github.io/forjados-podcast/</link></image>
-<itunes:category text="History"/><itunes:category text="Health &amp; Fitness"/><itunes:type>episodic</itunes:type>
+<itunes:category text="Health &amp; Fitness"/><itunes:category text="History"/><itunes:type>episodic</itunes:type>
 <item><title>Ep. 01 — David Goggins: o homem que ninguém conseguia quebrar</title><description>De quase 135 kg matando baratas de madrugada a Navy SEAL, Ranger e ultramaratonista. A história de David Goggins e as ferramentas mentais que ele criou: o espelho da responsabilidade, o pote de biscoitos e a regra dos 40%.</description>
-<enclosure url="https://marcopmloa-commits.github.io/forjados-podcast/episodios/ep01.mp3" length="7026951" type="audio/mpeg"/>
-<guid isPermaLink="false">forjados-ep01</guid><pubDate>Tue, 03 Nov 2026 12:00:00 +0000</pubDate><itunes:duration>585</itunes:duration>
-<itunes:episode>1</itunes:episode><itunes:explicit>false</itunes:explicit></item>
+<enclosure url="https://marcopmloa-commits.github.io/forjados-podcast/episodios/ep01.mp3" length="7026951" type="audio/mpeg"/><guid isPermaLink="false">forjados-ep01</guid>
+<pubDate>Tue, 03 Nov 2026 12:00:00 +0000</pubDate><itunes:duration>585</itunes:duration><itunes:explicit>false</itunes:explicit></item><item><title>Caiu? Ótimo. Agora levanta</title><description>Recaída não é fim de jornada. O que fazer no dia seguinte ao dia em que você falhou.</description>
+<enclosure url="https://marcopmloa-commits.github.io/forjados-podcast/episodios/2026-11-03-a5.mp3" length="1705633" type="audio/mpeg"/><guid isPermaLink="false">forjados-2026-11-03-a5</guid>
+<pubDate>Tue, 03 Nov 2026 08:04:00 +0000</pubDate><itunes:duration>213</itunes:duration><itunes:explicit>false</itunes:explicit></item><item><title>A guerra começa no travesseiro</title><description>A primeira batalha do dia acontece antes de você sair da cama. Como vencer o despertador e ganhar a manhã.</description>
+<enclosure url="https://marcopmloa-commits.github.io/forjados-podcast/episodios/2026-11-03-a4.mp3" length="1686206" type="audio/mpeg"/><guid isPermaLink="false">forjados-2026-11-03-a4</guid>
+<pubDate>Tue, 03 Nov 2026 08:03:00 +0000</pubDate><itunes:duration>210</itunes:duration><itunes:explicit>false</itunes:explicit></item><item><title>Disciplina vence motivação</title><description>Motivação é visita. Disciplina é morador. Por que esperar ter vontade é a armadilha que mantém você parado.</description>
+<enclosure url="https://marcopmloa-commits.github.io/forjados-podcast/episodios/2026-11-03-a3.mp3" length="1712111" type="audio/mpeg"/><guid isPermaLink="false">forjados-2026-11-03-a3</guid>
+<pubDate>Tue, 03 Nov 2026 08:02:00 +0000</pubDate><itunes:duration>213</itunes:duration><itunes:explicit>false</itunes:explicit></item><item><title>O sino: o que acontece na Semana do Inferno</title><description>Na seleção dos SEALs, basta tocar um sino para desistir. A história do sino e a lição que ele carrega para a sua vida.</description>
+<enclosure url="https://marcopmloa-commits.github.io/forjados-podcast/episodios/2026-11-03-a2.mp3" length="1771659" type="audio/mpeg"/><guid isPermaLink="false">forjados-2026-11-03-a2</guid>
+<pubDate>Tue, 03 Nov 2026 08:01:00 +0000</pubDate><itunes:duration>221</itunes:duration><itunes:explicit>false</itunes:explicit></item><item><title>Ninguém vem te salvar</title><description>Um chamado direto: pare de esperar o resgate. Ninguém vai fazer por você o trabalho que é seu.</description>
+<enclosure url="https://marcopmloa-commits.github.io/forjados-podcast/episodios/2026-11-03-a1.mp3" length="1664036" type="audio/mpeg"/><guid isPermaLink="false">forjados-2026-11-03-a1</guid>
+<pubDate>Tue, 03 Nov 2026 08:00:00 +0000</pubDate><itunes:duration>207</itunes:duration><itunes:explicit>false</itunes:explicit></item>
 </channel></rss>
