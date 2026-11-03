@@ -53,4 +53,5 @@ for i, a in enumerate(audios):
         "url": S.BASE + f"episodios/{dia}-{nome}", "bytes": os.path.getsize(mp3), "dur": dur,
         "data": hora.isoformat(), "transcricao": [p for p in cfg["paragrafos"] if p.strip()]})
 S.salvar(eps); S.gerar()
-print(f"publicado. vídeos: https://github.com/{REPO}/tree/tiktok/{dia}")
+import pagina_tiktok; pagina_tiktok.gerar(pasta)
+print(f"publicado. vídeos: {S.BASE}tiktok.html")

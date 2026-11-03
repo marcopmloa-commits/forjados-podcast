@@ -46,7 +46,7 @@ header img{{width:220px;max-width:100%;border-radius:10px}} h1{{font-family:Anto
 .ep h2{{font-family:Oswald;font-weight:600;font-size:24px;margin:0 0 6px}} .meta{{color:var(--mut);font-size:14px}} audio{{width:100%;margin:14px 0}}
 details summary{{cursor:pointer;color:var(--ac);font-family:Oswald;letter-spacing:2px}} .tr p{{margin:0 0 12px}}</style></head><body><div class="w">
 <header><img src="capa-v2.jpg" alt="Capa do podcast Forjados"><div><div class="tag">PODCAST</div><h1>FORJADOS</h1>
-<p>Operações especiais, histórias reais e a mentalidade de quem decidiu não desistir.</p><div class="btns"><a href="feed.xml">Feed RSS</a></div></div></header>
+<p>Operações especiais, histórias reais e a mentalidade de quem decidiu não desistir.</p><div class="btns"><a href="tiktok.html">Vídeos do dia</a><a href="feed.xml">Feed RSS</a></div></div></header>
 {''.join(cards)}</div></body></html>"""
     open(os.path.join(RAIZ, "index.html"), "w", encoding="utf-8").write(page)
 if __name__ == "__main__": gerar()
