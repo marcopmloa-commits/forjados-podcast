@@ -1,6 +1,6 @@
 import os, re, subprocess, wave
 VOZ_PADRAO = "pt-BR-AntonioNeural:+4%:-8Hz"   # áudios do podcast
-VOZ_VIDEO = "pt-BR-AntonioNeural:+18%:-6Hz"   # vídeos: mais rápido, prende atenção
+VOZ_VIDEO = "pt-BR-AntonioNeural:+21%:-6Hz"   # vídeos: mais rápido, prende atenção
 def limpa(t): return re.sub(r"\*\*(.+?)\*\*", r"\1", t)
 def destaca(t): return re.sub(r"\*\*(.+?)\*\*", r'<span class="hl">\1</span>', t)
 def tts(texto, wav, voz=VOZ_PADRAO):

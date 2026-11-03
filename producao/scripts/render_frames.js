@@ -3,5 +3,5 @@ const {chromium}=require('playwright');const fs=require('fs'),path=require('path
 (async()=>{const items=JSON.parse(fs.readFileSync(process.argv[2]));const b=await chromium.launch();
 const p=await b.newPage({viewport:{width:1080,height:1920}});
 await p.goto('file://'+path.resolve(__dirname,process.argv[3]||'frame.html'));await p.evaluate(()=>document.fonts.ready);await p.waitForTimeout(500);
-for(const it of items){await p.evaluate(d=>window.setFrame(d),it);await p.screenshot({path:it.out});}
+for(const it of items){await p.evaluate(d=>window.setFrame(d),it);await p.screenshot({path:it.out,omitBackground:it.layer==='fg'});}
 await b.close();})();

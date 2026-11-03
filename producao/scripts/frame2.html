@@ -29,6 +29,11 @@ svg.n{position:absolute;inset:0;mix-blend-mode:overlay;opacity:.45}
 <div class="outro" id="o"><h1>FORJADOS</h1><div class="l">PODCAST</div><p id="op"></p></div>
 <script>
 window.setFrame=async(d)=>{
+ const fg=d.layer==='fg';
+ document.documentElement.style.background=document.body.style.background=fg?'transparent':'#000';
+ document.getElementById('bg').style.visibility=fg?'hidden':'visible';
+ document.querySelector('svg.n').style.visibility=fg?'hidden':'visible';
+ document.querySelectorAll('.shade,.brand,.mid,.cap,.cred,.outro').forEach(e=>e.style.visibility=d.layer==='bg'?'hidden':'');
  if(d.img){await new Promise(r=>{const im=new Image();im.onload=im.onerror=r;im.src='file://'+d.img;});}
  document.getElementById('bg').style.backgroundImage=d.img?`url('file://${d.img}')`:'none';
  const k=document.getElementById('k');k.textContent=d.kicker||'';k.style.display=d.kicker?'inline-block':'none';

@@ -19,7 +19,15 @@ def pixabay(q, n):
     url = "https://pixabay.com/api/?" + urllib.parse.urlencode({"key": k, "q": q, "image_type": "photo", "per_page": 30, "safesearch": "true", "min_height": 1200})
     hits = _get(url).get("hits", [])
     # prefere retrato/alta resolução, varia a escolha
-    top = hits[: max(n * 2, 4)]; random.shuffle(top)  # mantém a ordem de relevância da API
+    ruim = {"toy","toys","cartoon","illustration","figurine","nutcracker","lego","doll","miniature","game","render","3d","drawing","costume","roman","fantasy","anime","saxophone","music"}
+    pal = [w for w in q.lower().split() if len(w) > 2]
+    def nota(h):
+        tags = h["tags"].lower().replace(",", " ").split()
+        if any(b in tags for b in ruim): return -1
+        return sum(w in " ".join(tags) for w in pal)
+    hits = [h for h in hits if nota(h) >= 0]
+    melhor = max((nota(h) for h in hits), default=0)
+    top = [h for h in hits if nota(h) == melhor][: max(n * 3, 3)]; random.shuffle(top)
     return [(h["largeImageURL"], f'Foto: {h["user"]} / Pixabay') for h in top[:n]]
 def wikimedia(q, n):
     url = "https://commons.wikimedia.org/w/api.php?" + urllib.parse.urlencode({"action": "query", "format": "json", "generator": "search",

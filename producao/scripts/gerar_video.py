@@ -17,22 +17,26 @@ for i, c in enumerate(cenas):
         if r: img, cred = r[0]["arquivo"], r[0]["credito"]; creditos.append(cred)
     if c.get("outro") and not img:
         img = cfg.get("_ultima_img")
-    t_cena = 0.0
+    bgpng = os.path.join(work, f"bg{i:02d}.png"); frames.append({"out": bgpng, "layer": "bg", "img": img})
+    t_cena = 0.0; ini = len(clips)
     for j, f in enumerate(c["falas"]):
         wav = os.path.join(work, f"{n:03d}.wav"); png = os.path.join(work, f"{n:03d}.png")
         dur = tts(f, wav, voz) + (0.12 if j < len(c["falas"]) - 1 else 0.3)
-        frames.append({"out": png, "img": img, "kicker": c.get("kicker", ""), "big": c.get("big", ""),
+        frames.append({"out": png, "layer": "fg", "img": img, "kicker": c.get("kicker", ""), "big": c.get("big", ""),
                        "cap": "" if c.get("outro") else destaca(f), "credito": cred, "outro": bool(c.get("outro"))})
-        clips.append((wav, png, dur, t_cena)); t_cena += dur; n += 1
+        clips.append([wav, png, dur, t_cena, bgpng, 0]); t_cena += dur; n += 1
+    for cl in clips[ini:]: cl[5] = t_cena
     if img: cfg["_ultima_img"] = img
 json.dump(frames, open(os.path.join(work, "frames.json"), "w"))
 subprocess.run(["node", os.path.join(SCR, "render_frames.js"), os.path.join(work, "frames.json"), "frame2.html"], check=True)
 lv = open(os.path.join(work, "v.txt"), "w"); la = open(os.path.join(work, "a.txt"), "w"); D = 0
-for k, (wav, png, dur, t0) in enumerate(clips):
-    fr = int(dur * 30); D += fr / 30; z0 = 1.0 + 0.02 * t0
+for k, (wav, png, dur, t0, bgpng, tcena) in enumerate(clips):
+    fr = int(dur * 30); D += fr / 30
+    passo = 0.05 / max(tcena * 30, 1); z0 = 1.0 + passo * t0 * 30   # zoom contínuo na cena, máx. 5%
     mp4 = os.path.join(work, f"{k:03d}.mp4")
-    subprocess.run(["ffmpeg","-y","-loglevel","error","-loop","1","-i",png,"-vf",
-        f"scale=1296:2304,zoompan=z='min({z0:.4f}+0.0007*on,1.15)':x='iw/2-(iw/zoom/2)':y='ih/2-(ih/zoom/2)':d={fr}:s=1080x1920:fps=30,format=yuv420p",
+    subprocess.run(["ffmpeg","-y","-loglevel","error","-loop","1","-i",bgpng,"-loop","1","-i",png,"-filter_complex",
+        f"[0:v]scale=2160:3840,zoompan=z='{z0:.5f}+{passo:.7f}*on':x='iw/2-(iw/zoom/2)':y='ih/2-(ih/zoom/2)':d={fr}:s=1080x1920:fps=30[b];"
+        f"[b][1:v]overlay=0:0:format=auto,format=yuv420p",
         "-frames:v",str(fr),"-c:v","libx264","-preset","veryfast","-crf","21",mp4], check=True)
     pad = os.path.join(work, f"{k:03d}p.wav")
     subprocess.run(["ffmpeg","-y","-loglevel","error","-i",wav,"-af",f"apad=whole_dur={fr/30}","-ar","24000","-ac","1",pad], check=True)
