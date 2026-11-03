@@ -1,19 +1,22 @@
 """Episódio de áudio. uso: python3 gerar_ep.py ep.json saida.mp3   (ep.json: {titulo, paragrafos:[...]} ; "" = pausa)"""
 import json, os, subprocess, sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from comum import tts, trilha, VOZ_PADRAO
+from comum import tts_corrido, trilha, VOZ_PADRAO
 cfg = json.load(open(sys.argv[1], encoding="utf-8")); saida = os.path.abspath(sys.argv[2])
 work = saida[:-4] + "_build"; os.makedirs(work, exist_ok=True)
+# narração corrida: cada bloco (separado por "" no roteiro) é narrado de uma vez, como história contada
+blocos, atual = [], []
+for p in cfg["paragrafos"]:
+    if p.strip(): atual.append(p)
+    elif atual: blocos.append(atual); atual = []
+if atual: blocos.append(atual)
 lst = open(os.path.join(work, "a.txt"), "w"); D = 0
-sil = os.path.join(work, "sil.wav")
-for k, p in enumerate(cfg["paragrafos"]):
-    if not p.strip():
-        dur = 1.0
-        subprocess.run(["ffmpeg","-y","-loglevel","error","-f","lavfi","-i","anullsrc=r=24000:cl=mono","-t","1.0",os.path.join(work,f"{k:03d}p.wav")],check=True)
-    else:
-        wav = os.path.join(work, f"{k:03d}.wav"); dur = tts(p, wav, cfg.get("voz", VOZ_PADRAO)) + 0.6
-        subprocess.run(["ffmpeg","-y","-loglevel","error","-i",wav,"-af",f"apad=whole_dur={dur}","-ar","24000","-ac","1",os.path.join(work,f"{k:03d}p.wav")],check=True)
-    lst.write(f"file '{os.path.join(work,f'{k:03d}p.wav')}'\n"); D += dur
+for k, bl in enumerate(blocos):
+    wav = os.path.join(work, f"{k:03d}.wav"); dur, _ = tts_corrido(bl, wav, cfg.get("voz", VOZ_PADRAO))
+    dur += 0.9   # respiro entre blocos
+    pad = os.path.join(work, f"{k:03d}p.wav")
+    subprocess.run(["ffmpeg","-y","-loglevel","error","-i",wav,"-af",f"apad=whole_dur={dur}","-ar","24000","-ac","1",pad],check=True)
+    lst.write(f"file '{pad}'\n"); D += dur
 lst.close()
 subprocess.run(["ffmpeg","-y","-loglevel","error","-f","concat","-safe","0","-i",lst.name,os.path.join(work,"voz.wav")],check=True)
 T = D + 7

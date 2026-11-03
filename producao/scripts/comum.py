@@ -16,3 +16,38 @@ def tts(texto, wav, voz=VOZ_PADRAO):
 def trilha(dur):
     """entradas lavfi para a trilha grave sintetizada"""
     return ["-f","lavfi","-i",f"sine=f=55:d={dur}","-f","lavfi","-i",f"sine=f=82.4:d={dur}","-f","lavfi","-i",f"anoisesrc=c=brown:a=0.02:d={dur}"]
+
+def tts_corrido(textos, wav, voz):
+    """Narra vários trechos NUM fluxo só (entonação contínua, sem pausa artificial entre frases).
+    Devolve (duração_total, [início_em_segundos de cada trecho])."""
+    import asyncio, edge_tts
+    nome, rate, pitch = voz.split(":")
+    limpos = [limpa(t).strip() for t in textos]
+    texto = " ".join(limpos)
+    mp3 = wav[:-4] + ".mp3"; marcas = []
+    async def run():
+        c = edge_tts.Communicate(texto, nome, rate=rate, pitch=pitch, boundary="WordBoundary",
+                                 proxy=os.environ.get("HTTPS_PROXY"))
+        with open(mp3, "wb") as f:
+            async for ch in c.stream():
+                if ch["type"] == "audio": f.write(ch["data"])
+                elif ch["type"] == "WordBoundary": marcas.append((ch["offset"] / 1e7, ch["text"]))
+    for t in range(3):
+        try: marcas.clear(); asyncio.run(run()); break
+        except Exception as e:
+            if t == 2: raise
+    subprocess.run(["ffmpeg", "-y", "-loglevel", "error", "-i", mp3, "-ar", "24000", "-ac", "1", wav], check=True)
+    with wave.open(wav) as w: total = w.getnframes() / w.getframerate()
+    # início de cada trecho = tempo da 1ª palavra dele; procura a palavra adiante (números podem virar várias marcas)
+    norm = lambda s: re.sub(r"[^\w]", "", s.lower())
+    inicios, k = [], 0
+    for t in limpos:
+        palavras = [norm(p) for p in t.split() if norm(p)]
+        alvo = palavras[0] if palavras else ""
+        achou = next((j for j in range(k, min(k + 12, len(marcas))) if norm(marcas[j][1]) == alvo), None)
+        if achou is None: achou = min(k, len(marcas) - 1)
+        inicios.append(marcas[achou][0] if marcas else 0.0)
+        k = achou + max(len(palavras) - 2, 1)
+    inicios[0] = 0.0
+    for i in range(1, len(inicios)): inicios[i] = min(max(inicios[i], inicios[i-1] + 0.4), total)
+    return total, inicios

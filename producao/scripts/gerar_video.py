@@ -1,7 +1,7 @@
 """Vídeo vertical com fotos reais. uso: python3 gerar_video.py video.json saida.mp4"""
 import json, os, subprocess, sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from comum import tts, destaca, trilha, VOZ_VIDEO
+from comum import tts_corrido, destaca, trilha, VOZ_VIDEO
 from imagens import buscar, buscar_video
 SCR = os.path.dirname(os.path.abspath(__file__))
 cfg = json.load(open(sys.argv[1], encoding="utf-8")); saida = os.path.abspath(sys.argv[2])
@@ -30,20 +30,27 @@ for i, c in enumerate(cenas):
     if c.get("outro") and not img:
         img = cfg.get("_ultima_img")
     bgpng = os.path.join(work, f"bg{i:02d}.png"); frames.append({"out": bgpng, "layer": "bg", "img": img, "inteira": inteira})
-    t_cena = 0.0; ini = len(clips)
     for j, f in enumerate(c["falas"]):
-        wav = os.path.join(work, f"{n:03d}.wav"); png = os.path.join(work, f"{n:03d}.png")
-        dur = tts(f, wav, voz) + (0.12 if j < len(c["falas"]) - 1 else 0.3)
+        png = os.path.join(work, f"{n:03d}.png")
         frames.append({"out": png, "layer": "fg", "img": img, "kicker": c.get("kicker", ""), "big": c.get("big", ""),
                        "cap": "" if c.get("outro") else destaca(f), "credito": cred, "outro": bool(c.get("outro"))})
-        clips.append([wav, png, dur, t_cena, bgpng, 0, clip]); t_cena += dur; n += 1
-    for cl in clips[ini:]: cl[5] = t_cena
+        clips.append({"fala": f, "png": png, "bg": bgpng, "clip": clip, "cena": i}); n += 1
     if img: cfg["_ultima_img"] = img
+# narração contínua do roteiro inteiro (história contada, sem "ponto" entre frases)
+vozwav = os.path.join(work, "voz.wav")
+total, inicios = tts_corrido([c["fala"] for c in clips], vozwav, voz)
+fim = total + 0.6
+F = [round(t * 30) for t in inicios] + [round(fim * 30)]
+for k, c in enumerate(clips):
+    c["fr"] = max(F[k + 1] - F[k], 1); c["ini"] = F[k] / 30
+for c in clips:   # tempo relativo dentro da cena (zoom/clipe contínuos)
+    da_cena = [x for x in clips if x["cena"] == c["cena"]]
+    c["t0"] = c["ini"] - da_cena[0]["ini"]; c["tcena"] = sum(x["fr"] for x in da_cena) / 30
 json.dump(frames, open(os.path.join(work, "frames.json"), "w"))
 subprocess.run(["node", os.path.join(SCR, "render_frames.js"), os.path.join(work, "frames.json"), "frame2.html"], check=True)
-lv = open(os.path.join(work, "v.txt"), "w"); la = open(os.path.join(work, "a.txt"), "w"); D = 0
-for k, (wav, png, dur, t0, bgpng, tcena, clip) in enumerate(clips):
-    fr = int(dur * 30); D += fr / 30
+lv = open(os.path.join(work, "v.txt"), "w"); D = 0
+for k, c in enumerate(clips):
+    png, bgpng, clip, fr, t0, tcena = c["png"], c["bg"], c["clip"], c["fr"], c["t0"], c["tcena"]; D += fr / 30
     passo = 0.05 / max(tcena * 30, 1); z0 = 1.0 + passo * t0 * 30   # zoom contínuo na cena, máx. 5%
     mp4 = os.path.join(work, f"{k:03d}.mp4")
     if clip:  # fundo em vídeo: P&B, contraste, cortado em 9:16, continua do ponto da cena
@@ -56,13 +63,12 @@ for k, (wav, png, dur, t0, bgpng, tcena, clip) in enumerate(clips):
         f"[0:v]scale=2160:3840,zoompan=z='{z0:.5f}+{passo:.7f}*on':x='iw/2-(iw/zoom/2)':y='ih/2-(ih/zoom/2)':d={fr}:s=1080x1920:fps=30[b];"
         f"[b][1:v]overlay=0:0:format=auto,format=yuv420p",
         "-frames:v",str(fr),"-c:v","libx264","-preset","veryfast","-crf","21",mp4], check=True)
-    pad = os.path.join(work, f"{k:03d}p.wav")
-    subprocess.run(["ffmpeg","-y","-loglevel","error","-i",wav,"-af",f"apad=whole_dur={fr/30}","-ar","24000","-ac","1",pad], check=True)
-    lv.write(f"file '{mp4}'\n"); la.write(f"file '{pad}'\n")
-lv.close(); la.close()
+    lv.write(f"file '{mp4}'\n")
+lv.close()
 subprocess.run(["ffmpeg","-y","-loglevel","error","-f","concat","-safe","0","-i",lv.name,"-c","copy",os.path.join(work,"v.mp4")], check=True)
-subprocess.run(["ffmpeg","-y","-loglevel","error","-f","concat","-safe","0","-i",la.name,os.path.join(work,"voz.wav")], check=True)
-subprocess.run(["ffmpeg","-y","-loglevel","error","-i",os.path.join(work,"v.mp4"),"-i",os.path.join(work,"voz.wav")] + trilha(D+1) + [
+subprocess.run(["ffmpeg","-y","-loglevel","error","-i",vozwav,"-af",f"apad=whole_dur={D}",os.path.join(work,"voz_p.wav")], check=True)
+vozwav = os.path.join(work, "voz_p.wav")
+subprocess.run(["ffmpeg","-y","-loglevel","error","-i",os.path.join(work,"v.mp4"),"-i",vozwav] + trilha(D+1) + [
   "-filter_complex","[1:a]aresample=44100,highpass=f=70,acompressor=threshold=-18dB:ratio=3[v];"
   "[2:a][3:a][4:a]amix=inputs=3,lowpass=f=300,aresample=44100,tremolo=f=1.1:d=0.5,volume=0.07[bg];"
   f"[v][bg]amix=inputs=2:duration=first:normalize=0,afade=t=out:st={D-1.5:.2f}:d=1.5,loudnorm=I=-14:TP=-1.5[a]",
