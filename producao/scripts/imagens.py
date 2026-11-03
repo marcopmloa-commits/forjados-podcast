@@ -62,12 +62,32 @@ def wikimedia(q, n):
         lic = md.get("LicenseShortName", {}).get("value", "")
         out.append((ii.get("thumburl") or ii["url"], f"Foto: {autor} / Wikimedia Commons ({lic})"))
     return out
+def loc(q, n):
+    """Biblioteca do Congresso dos EUA (fotos históricas, muitas em domínio público)."""
+    url = "https://www.loc.gov/photos/?" + urllib.parse.urlencode({"q": q, "fo": "json", "c": 40})
+    res = _get(url).get("results", [])
+    out = []
+    for r in res:
+        urls = [u for u in (r.get("image_url") or []) if "tile.loc.gov" in u and not u.endswith(".svg")]
+        if not urls: continue
+        if r.get("online_format") and "image" not in " ".join(r["online_format"]): continue
+        u = urls[-1].split("#")[0]
+        texto = (r.get("title", "") + " " + " ".join(r.get("subject", []) or [])).lower()
+        nota = sum(w in texto for w in [w for w in q.lower().split() if len(w) > 3])
+        out.append((nota, u, f"Foto: {r.get('title','')[:50]} / Library of Congress"))
+    if not out: return []
+    melhor = max(o[0] for o in out)
+    minimo = max(1, (len([w for w in q.split() if len(w) > 3]) + 1) // 2)   # pelo menos metade das palavras
+    if melhor < minimo: return []
+    top = [(u, c) for nt, u, c in out if nt == melhor][: max(n * 2, 3)]; random.shuffle(top)
+    return top[:n]
 def buscar(q, pasta, n=1, fonte="auto"):
     os.makedirs(pasta, exist_ok=True)
     res = []
-    for f in ([fonte] if fonte != "auto" else ["pixabay", "wikimedia"]):
+    ordem = {"auto": ["pixabay", "wikimedia"], "wikimedia": ["wikimedia", "loc"], "historico": ["wikimedia", "loc"], "loc": ["loc"], "pixabay": ["pixabay"]}[fonte]
+    for f in ordem:
         try:
-            res = (pixabay if f == "pixabay" else wikimedia)(q, n)
+            res = {"pixabay": pixabay, "wikimedia": wikimedia, "loc": loc}[f](q.replace("File:", "") if f == "loc" else q, n)
         except Exception as e:
             print(f"[imagens] {f} falhou: {e}", file=sys.stderr); res = []
         if res: break

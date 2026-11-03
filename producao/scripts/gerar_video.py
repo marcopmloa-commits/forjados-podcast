@@ -15,7 +15,14 @@ for i, c in enumerate(cenas):
     if c.get("video"):
         r = buscar_video(c["video"], os.path.join(work, "vid"))
         if r: clip, cred = r["arquivo"], r["credito"]; creditos.append(cred)
-    if c.get("img") and not clip:
+    if c.get("img_url") and not clip:   # foto de arquivo achada via busca (endereço direto da imagem)
+        try:
+            from imagens import _get
+            os.makedirs(os.path.join(work, "img"), exist_ok=True); arq = os.path.join(work, "img", f"url{i:02d}.jpg")
+            open(arq, "wb").write(_get(c["img_url"], raw=True)); img = arq
+            cred = c.get("credito", "Foto de arquivo"); creditos.append(cred); inteira = c.get("inteira", True)
+        except Exception as e: print(f"[img_url] falhou: {e}", file=sys.stderr)
+    if c.get("img") and not clip and not img:
         r = buscar(c["img"], os.path.join(work, "img"), 1, c.get("fonte", "auto"))
         if not r and c.get("img_reserva"): r = buscar(c["img_reserva"], os.path.join(work, "img"), 1, "pixabay")
         if r: img, cred = r[0]["arquivo"], r[0]["credito"]; creditos.append(cred)

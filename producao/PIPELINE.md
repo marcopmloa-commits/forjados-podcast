@@ -48,6 +48,8 @@ Depois: `git add -A` (o .gitignore já exclui `saida/`), commit e push em `main`
 ### Mídias com relação e contexto (obrigatório — o dono cobra isso)
 - **Histórias reais: imagens de arquivo DO PRÓPRIO FATO** via Wikimedia Commons: `"fonte": "wikimedia"`. Ex.: FEB → fotos da FEB na Itália, o distintivo da **Cobra Fumando**, Monte Castelo, Mascarenhas de Moraes; Desmond Doss → fotos dele e de Okinawa; Termópilas → o local, estátua de Leônidas, pinturas históricas (ex.: "Leonidas at Thermopylae" de David).
 - Melhor ainda: ache o arquivo exato com WebSearch/no Commons e use `"img": "File:Nome_exato.jpg"` com `"fonte": "wikimedia"`.
+- **Com acesso total à internet (configurado pelo dono):** para histórias brasileiras ou temas em que o Commons/LoC falham, use WebSearch para achar fotos de arquivo em sites oficiais/acervos (Arquivo Nacional, Exército Brasileiro, museus, Wikipédia) e coloque o endereço direto da imagem em `"img_url"` + `"credito": "Foto: <acervo>"`. Prefira material histórico em domínio público (ex.: fotos da FEB de 1944–45). Não use fotos de bancos pagos, de jornais recentes ou com marca d'água.
+- Fontes históricas automáticas: `"fonte": "wikimedia"` tenta Commons e depois Biblioteca do Congresso dos EUA (forte em EUA/Europa, fraca em Brasil).
 - Sempre coloque `"img_reserva"` (busca genérica na Pixabay, ex.: "vintage soldiers mud") para o caso de o Commons não responder.
 - Fotos do Commons aparecem **inteiras** (sem corte), sobre fundo desfocado — automático.
 - **Nunca** use foto/clipe que contradiga a história: soldado moderno numa história da 2ª Guerra, uniforme de outro país, época errada, pessoas aleatórias no lugar do personagem. Na dúvida, prefira mapa, local, paisagem ou objeto da época a uma pessoa errada.
