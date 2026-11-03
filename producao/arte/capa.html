@@ -1,0 +1,36 @@
+<!doctype html><html><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Oswald:wght@400;600&display=block" rel="stylesheet">
+<style>
+html,body{margin:0;width:1500px;height:1500px;background:#0b0a09;overflow:hidden}
+.c{position:relative;width:1500px;height:1500px;font-family:Oswald,sans-serif;color:#eee}
+.glow{position:absolute;left:50%;top:62%;width:1400px;height:1000px;transform:translate(-50%,-50%);
+ background:radial-gradient(ellipse at center,rgba(255,96,20,.55) 0%,rgba(190,40,10,.25) 30%,rgba(0,0,0,0) 65%)}
+svg.n{position:absolute;inset:0;mix-blend-mode:overlay;opacity:.55}
+.sparks span{position:absolute;width:6px;height:6px;border-radius:50%;background:#ffb060;box-shadow:0 0 14px #ff7a1a}
+.tag{position:absolute;top:120px;left:0;right:0;text-align:center;letter-spacing:22px;font-size:40px;color:#c9a27a;font-weight:600}
+.line{position:absolute;top:195px;left:50%;width:160px;height:4px;background:#ff6a1a;transform:translateX(-50%)}
+h1{position:absolute;top:470px;left:0;right:0;margin:0;text-align:center;font-family:Anton;font-size:330px;letter-spacing:6px;
+ background:linear-gradient(180deg,#fff 0%,#f3d9b8 45%,#ff8a3a 78%,#b8320c 100%);-webkit-background-clip:text;color:transparent;
+ filter:drop-shadow(0 0 40px rgba(255,90,20,.45))}
+.blade{position:absolute;top:880px;left:50%;transform:translateX(-50%)}
+.sub{position:absolute;bottom:150px;left:0;right:0;text-align:center;font-size:46px;letter-spacing:7px;color:#e9e1d6}
+.sub b{color:#ff7a2a;font-weight:600}
+.vig{position:absolute;inset:0;box-shadow:inset 0 0 300px 120px #000}
+</style></head><body><div class="c">
+<div class="glow"></div>
+<svg class="n" width="1500" height="1500"><filter id="f"><feTurbulence type="fractalNoise" baseFrequency=".85" numOctaves="3" stitchTiles="stitch"/><feColorMatrix type="saturate" values="0"/></filter><rect width="100%" height="100%" filter="url(#f)"/></svg>
+<div class="sparks" id="s"></div>
+<div class="tag">PODCAST</div><div class="line"></div>
+<h1>FORJADOS</h1>
+<svg class="blade" width="900" height="120" viewBox="0 0 900 120">
+ <defs><linearGradient id="g" x1="0" x2="1"><stop offset="0" stop-color="#ff6a1a" stop-opacity="0"/><stop offset=".5" stop-color="#ffd1a0"/><stop offset="1" stop-color="#ff6a1a" stop-opacity="0"/></linearGradient></defs>
+ <rect x="0" y="58" width="900" height="4" fill="url(#g)"/>
+ <path d="M450 20 L470 60 L450 100 L430 60 Z" fill="#ff7a2a"/>
+</svg>
+<div class="sub">OPERAÇÕES ESPECIAIS <b>·</b> HISTÓRIAS <b>·</b> MENTALIDADE</div>
+<div class="vig"></div>
+</div>
+<script>
+let s=document.getElementById('s'),r=(a,b)=>a+Math.random()*(b-a);Math.random=(()=>{let x=7;return()=>(x=(x*16807)%2147483647)/2147483647})();
+for(let i=0;i<70;i++){let e=document.createElement('span');let sz=r(2,9);e.style.cssText=`left:${r(150,1350)}px;top:${r(700,1350)}px;width:${sz}px;height:${sz}px;opacity:${r(.3,1)}`;s.appendChild(e)}
+</script></body></html>

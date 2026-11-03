@@ -1,0 +1,11 @@
+[
+ {"kicker":"5 DA MANHÃ","big":"ALARME","falas":["O alarme tocou.","E a primeira coisa que você fez, foi negociar com você mesmo.","Só mais cinco minutos. Hoje não. Amanhã eu começo."]},
+ {"kicker":"A VERDADE","big":"MENTIRA","falas":["Escuta. Essa voz não é sua amiga.","Ela é a voz que te mantém exatamente onde você está."]},
+ {"kicker":"OLHE PRA ELE","big":"ESPELHO","falas":["Vai até o espelho.","Não pra se admirar. Pra se encarar.","Fala a verdade que você vem evitando. Em voz alta."]},
+ {"kicker":"ACORDA","big":"NINGUÉM VEM","falas":["Ninguém vem te salvar.","Nenhum chefe. Nenhum treinador. Nenhum vídeo motivacional. Nem este aqui."]},
+ {"kicker":"A DOR","big":"PROFESSORA","falas":["A dor que você evita hoje, vira o arrependimento que você carrega amanhã.","Então escolhe a dor certa. A que constrói."]},
+ {"kicker":"CALEJA","big":"A MENTE","falas":["Faz uma coisa difícil hoje. De propósito.","Amanhã, outra. Até o desconforto parar de mandar em você."]},
+ {"kicker":"SEU LIMITE","big":"40%","falas":["Quando a sua cabeça disser que acabou, você mal começou."]},
+ {"kicker":"AGORA","big":"LEVANTA","falas":["Desliga essa tela. Calça o tênis.","E vai fazer o que você disse que ia fazer."]},
+ {"kicker":"SIGA PARA MAIS","big":"FORJADOS","outro":true,"falas":["Forjados. Mantenha-se firme."]}
+]

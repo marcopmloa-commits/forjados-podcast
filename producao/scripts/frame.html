@@ -1,0 +1,46 @@
+<!doctype html><html><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Oswald:wght@400;600;700&display=block" rel="stylesheet">
+<style>
+html,body{margin:0;width:1080px;height:1920px;background:#0b0a09;overflow:hidden;font-family:Oswald,sans-serif;color:#eee}
+.glow{position:absolute;left:50%;top:var(--gy,42%);width:1500px;height:1300px;transform:translate(-50%,-50%);
+ background:radial-gradient(ellipse at center,hsla(var(--h,20),100%,52%,.5) 0%,hsla(var(--h,20),90%,38%,.2) 32%,transparent 66%)}
+svg.n{position:absolute;inset:0;mix-blend-mode:overlay;opacity:.5}
+.ghost{position:absolute;top:50%;left:50%;transform:translate(-50%,-62%) rotate(-8deg);font-family:Anton;font-size:900px;color:rgba(255,255,255,.035);white-space:nowrap}
+.brand{position:absolute;top:150px;left:0;right:0;text-align:center;font-family:Anton;font-size:44px;letter-spacing:14px;color:#ff7a2a}
+.brand:after{content:"";display:block;width:90px;height:4px;background:#ff7a2a;margin:16px auto 0}
+.mid{position:absolute;top:430px;left:70px;right:70px;height:620px;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center}
+.kicker{font-size:46px;letter-spacing:10px;color:#d8b38c;font-weight:600;margin-bottom:24px}
+.big{font-family:Anton;line-height:1.12;padding-top:.12em;letter-spacing:2px;background:linear-gradient(180deg,#fff 0%,#f5dcbc 50%,#ff8a3a 85%,#c8400f 100%);
+ -webkit-background-clip:text;color:transparent;filter:drop-shadow(0 0 30px rgba(255,90,20,.4))}
+.bar{width:520px;height:4px;margin-top:34px;background:linear-gradient(90deg,transparent,#ffcf9a,transparent)}
+.cap{position:absolute;top:1170px;left:80px;right:150px;}
+.cap p{margin:0;display:inline;font-size:56px;line-height:1.38;font-weight:700;color:#fff;padding:6px 16px;
+ background:rgba(0,0,0,.72);box-decoration-break:clone;-webkit-box-decoration-break:clone;border-left:6px solid #ff6a1a}
+.cap .hl{color:#ffb070}
+.vig{position:absolute;inset:0;box-shadow:inset 0 0 260px 90px #000}
+.sparks span{position:absolute;border-radius:50%;background:#ffb060;box-shadow:0 0 12px #ff7a1a}
+.outro .sub{font-size:40px;letter-spacing:6px;color:#e9e1d6;margin-top:40px}
+</style></head><body>
+<div class="glow"></div>
+<svg class="n" width="1080" height="1920"><filter id="f"><feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="3" stitchTiles="stitch"/><feColorMatrix type="saturate" values="0"/></filter><rect width="100%" height="100%" filter="url(#f)"/></svg>
+<div class="ghost" id="ghost"></div><div class="sparks" id="s"></div>
+<div class="brand" id="brand">FORJADOS</div>
+<div class="mid" id="mid"><div class="kicker" id="k"></div><div class="big" id="b"></div><div class="bar"></div><div class="sub" id="sub"></div></div>
+<div class="cap" id="cap"><p id="c"></p></div>
+<div class="vig"></div>
+<script>
+window.setFrame=(d)=>{
+ document.documentElement.style.setProperty('--h',d.hue);
+ document.getElementById('k').textContent=d.kicker;
+ const b=document.getElementById('b');b.textContent=d.big;
+ const L=d.big.length; b.style.fontSize=(L<=4?360:L<=7?250:L<=10?190:L<=14?150:120)+'px';
+ document.getElementById('ghost').textContent=d.big.split(' ')[0];
+ document.getElementById('c').innerHTML=d.cap;
+ document.getElementById('cap').style.display=d.cap?'block':'none';
+ document.getElementById('brand').style.display=d.outro?'none':'block';
+ document.getElementById('sub').textContent=d.outro?'OPERAÇÕES ESPECIAIS · HISTÓRIAS · MENTALIDADE':'';
+ let x=d.seed*9301+49297;const R=()=>(x=(x*16807)%2147483647)/2147483647;
+ const s=document.getElementById('s');s.innerHTML='';
+ for(let i=0;i<45;i++){const e=document.createElement('span');const z=2+R()*7;e.style.cssText=`left:${R()*1080}px;top:${300+R()*1500}px;width:${z}px;height:${z}px;opacity:${.25+R()*.75}`;s.appendChild(e)}
+};
+</script></body></html>
