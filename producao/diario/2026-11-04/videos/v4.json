@@ -26,7 +26,6 @@
    "img_reserva": "vintage runner track"
   },
   {
-   "img": "File:Louis Zamperini (U.S. Army Air Forces).jpg",
    "kicker": "MAIO DE 1943",
    "big": "A QUEDA",
    "falas": [
@@ -34,8 +33,8 @@
     "Dos onze tripulantes, só **três** sobreviveram ao impacto.",
     "E começou a luta mais longa da vida dele."
    ],
-   "fonte": "wikimedia",
-   "img_reserva": "vintage bomber plane"
+   "img_url": "file:///home/user/forjados-podcast/producao/diario/2026-11-04/fotos/zamp_usaaf.jpg",
+   "credito": "Foto: U.S. Army / Wikimedia Commons (Public domain)"
   },
   {
    "img": "life raft ocean",
@@ -70,7 +69,6 @@
    "video": "rain window"
   },
   {
-   "img": "File:Louis Zamperini 1953.jpg",
    "kicker": "A VIRADA",
    "big": "PERDÃO",
    "falas": [
@@ -78,8 +76,8 @@
     "Anos depois, voltou ao Japão para **perdoar** antigos guardas.",
     "Ele entendeu que, enquanto odiasse, continuaria preso."
    ],
-   "fonte": "wikimedia",
-   "img_reserva": "sunrise man hope"
+   "img_url": "file:///home/user/forjados-podcast/producao/diario/2026-11-04/fotos/zamp_1953.jpg",
+   "credito": "Foto: Unknown authorUnknown author / Wikimedia Commons (Public domain)"
   },
   {
    "img": "man running sunrise",

@@ -3,7 +3,6 @@
  "legenda_post": "Chamaram ele de covarde porque não pegava em arma. Em Okinawa, ele salvou cerca de 75 homens sozinho. 🪢\n\nVocê aguentaria ser desacreditado por todos?\n\n#desmonddoss #segundaguerra #historiareal #coragem #forjados",
  "cenas": [
   {
-   "img": "File:Desmond Doss in Okinawa.jpg",
    "kicker": "OKINAWA, 1945",
    "big": "SÓ MAIS UM",
    "falas": [
@@ -11,9 +10,8 @@
     "Ele amarra um soldado ferido numa corda e desce o homem até lá embaixo, **na escuridão**.",
     "E sobe para buscar o próximo, e o próximo, sem parar."
    ],
-   "video": "fire night smoke",
-   "fonte": "wikimedia",
-   "img_reserva": "vintage soldiers war"
+   "img_url": "file:///home/user/forjados-podcast/producao/diario/2026-11-04/fotos/doss_okinawa.jpg",
+   "credito": "Foto: United States Army (courtesy of the US National Archives) / Wikimedia Commons (Public domain)"
   },
   {
    "img": "File:DossDesmondT USArmy.jpg",

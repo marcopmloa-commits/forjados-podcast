@@ -3,7 +3,6 @@
  "legenda_post": "Falharam várias vezes. Passaram o inverno aprendendo. E em 21 de fevereiro de 1945, o morro foi brasileiro. 🐍🚬🇧🇷\n\nQual é o seu Monte Castelo?\n\n#feb #montecastelo #historiadobrasil #segundaguerra #forjados",
  "cenas": [
   {
-   "img": "File:Soldados da FEB no segundo assalto da batalha de Monte Castelo.jpg",
    "kicker": "ITÁLIA, 1944",
    "big": "SUBIRAM DE NOVO",
    "falas": [
@@ -11,11 +10,10 @@
     "Subiram de novo e voltaram, e de novo, várias vezes.",
     "Até que, numa manhã de fevereiro, **não voltaram mais**."
    ],
-   "fonte": "wikimedia",
-   "img_reserva": "vintage soldiers snow mountain"
+   "img_url": "file:///home/user/forjados-podcast/producao/diario/2026-11-04/fotos/feb_assalto.jpg",
+   "credito": "Foto: Força Expedicionária Brasileira - Exército Brasileiro / Wikimedia Commons (Public domain)"
   },
   {
-   "img": "File:2 members of the Brazilian Expeditionary Force lunching on top of their M8 Greyhound.jpg",
    "kicker": "A FEB",
    "big": "A COBRA FUMOU",
    "falas": [
@@ -23,8 +21,8 @@
     "Diziam que era mais fácil **uma cobra fumar** do que o Brasil ir à guerra.",
     "Pois a cobra fumou, e virou o símbolo deles."
    ],
-   "fonte": "wikimedia",
-   "img_reserva": "vintage soldiers jeep"
+   "img_url": "file:///home/user/forjados-podcast/producao/diario/2026-11-04/fotos/feb_m8.jpg",
+   "credito": "Foto: Unknown authorUnknown author / Wikimedia Commons (Public domain)"
   },
   {
    "img": "apennines mountains italy",
@@ -59,7 +57,6 @@
    "video": "snow forest winter"
   },
   {
-   "img": "File:Prisioneiros alemães da Força Expedicionária Brasileira FEB.jpg",
    "kicker": "21 DE FEVEREIRO DE 1945",
    "big": "O ASSALTO",
    "falas": [
@@ -67,11 +64,10 @@
     "Foram horas de combate duro, encosta acima, **metro a metro**.",
     "No fim daquele dia, depois de tanta dor, Monte Castelo era brasileiro."
    ],
-   "fonte": "wikimedia",
-   "img_reserva": "vintage soldiers mountain"
+   "img_url": "file:///home/user/forjados-podcast/producao/diario/2026-11-04/fotos/feb_prisioneiros.jpg",
+   "credito": "Foto: Fundo Agência Nacional / Wikimedia Commons (Public domain)"
   },
   {
-   "img": "File:Pistoia, Monumento votivo militare brasiliano, 1967, busto del maresciallo j.b. mascarenhas de moraes.jpg",
    "kicker": "A MEMÓRIA",
    "big": "VITÓRIA",
    "falas": [
@@ -79,8 +75,8 @@
     "E até hoje a data é lembrada pelo **Exército Brasileiro**.",
     "Mas a lição vale para qualquer um."
    ],
-   "fonte": "wikimedia",
-   "img_reserva": "war memorial monument"
+   "img_url": "file:///home/user/forjados-podcast/producao/diario/2026-11-04/fotos/feb_mascarenhas.jpg",
+   "credito": "Foto: Sailko / Wikimedia Commons (CC BY 3.0)"
   },
   {
    "img": "man climbing mountain",
@@ -94,7 +90,7 @@
    "video": "man hiking mountain fog"
   },
   {
-   "img": "mountain summit sunrise",
+   "img": "mountain summit sunrise clouds",
    "kicker": "LEMBRE",
    "big": "SOBE DE NOVO",
    "falas": [
@@ -102,7 +98,7 @@
     "Quando estiver pronto, sobe de novo, porque",
     "**a sua cobra também vai fumar**."
    ],
-   "video": "mountain summit clouds"
+   "video": "sunrise clouds timelapse mountains"
   }
  ]
 }
