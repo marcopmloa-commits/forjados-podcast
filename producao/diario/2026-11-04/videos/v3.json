@@ -3,7 +3,6 @@
  "legenda_post": "150 homens. Milhares de guerreiros. Uma noite inteira. E 11 Cruzes Vitória. 🛡️\n\nQual número mais te impressionou?\n\n#historiareal #batalha #resistencia #historia #forjados",
  "cenas": [
   {
-   "img": "File:Alphonse de Neuville - The defence of Rorke's Drift 1879 - Google Art Project.jpg",
    "kicker": "JANEIRO DE 1879",
    "big": "150",
    "falas": [
@@ -11,8 +10,8 @@
     "Rorke's Drift, África do Sul, durante a guerra entre o Império Britânico e o Reino Zulu.",
     "Era só um posto num rio, com uma igreja e um **hospital improvisado**."
    ],
-   "fonte": "wikimedia",
-   "img_reserva": "old painting battle"
+   "img_url": "file:///home/user/forjados-podcast/producao/diario/2026-11-04/fotos/rorke_butler.jpg",
+   "credito": "Foto: Elizabeth Thompson / Wikimedia Commons (Public domain)"
   },
   {
    "img": "african savanna river",
@@ -43,8 +42,8 @@
     "Investida após investida, sem pausa para respirar.",
     "Os doentes eram tirados do hospital por buracos abertos nas paredes."
    ],
-   "img_url": "file:///home/user/forjados-podcast/producao/diario/2026-11-04/fotos/rorke_butler.jpg",
-   "credito": "Foto: Elizabeth Thompson / Wikimedia Commons (Public domain)"
+   "img_url": "file:///home/user/forjados-podcast/producao/diario/2026-11-04/fotos/rorke_neuville.jpg",
+   "credito": "Foto: Alphonse de Neuville / Wikimedia Commons (Public domain)"
   },
   {
    "img": "fire night",
@@ -80,15 +79,14 @@
    "credito": "Foto: Alphonse de Neuville / Wikimedia Commons (Public domain)"
   },
   {
-   "img": "man working desk night",
+   "img": "man writing notebook desk",
    "kicker": "NA SUA VIDA",
    "big": "1 DECISÃO",
    "falas": [
     "Você não precisa de condições perfeitas para resistir.",
     "Precisa de **uma decisão** e do que estiver à mão.",
     "O tempo, o corpo, a pouca energia, empilha tudo e segura a linha."
-   ],
-   "video": "man running stairs"
+   ]
   },
   {
    "img": "sunrise mountain",
@@ -98,7 +96,8 @@
     "A noite é longa, mas ela termina.",
     "E quem segura a linha até o fim",
     "**vê o dia nascer**."
-   ]
+   ],
+   "video": "sunrise mountains clouds"
   }
  ]
 }

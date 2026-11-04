@@ -14,7 +14,6 @@
    "video": "ocean waves storm"
   },
   {
-   "img": "File:Louis Zamperini at USC, 1938.jpg",
    "kicker": "BERLIM, 1936",
    "big": "OLÍMPICO",
    "falas": [
@@ -22,8 +21,8 @@
     "Terminou em oitavo, mas com uma última volta impressionante.",
     "Aí veio a guerra, e ele virou bombardeiro de um B-24."
    ],
-   "fonte": "wikimedia",
-   "img_reserva": "vintage runner track"
+   "img_url": "file:///home/user/forjados-podcast/producao/diario/2026-11-04/fotos/zamp_usc.jpg",
+   "credito": "Foto: Los Angeles Times / Wikimedia Commons (CC BY 4.0)"
   },
   {
    "kicker": "MAIO DE 1943",
