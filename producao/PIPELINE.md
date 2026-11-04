@@ -17,6 +17,10 @@ Depois: `git add -A` (o .gitignore já exclui `saida/`), commit e push em `main`
 
 **Espaço:** o GitHub Pages aceita ~1 GB → ~10 MB/dia de áudio ≈ 3 meses. Quando `du -sh episodios` passar de 850 MB, avise o dono.
 
+## Regras de execução da tarefa diária (aprendidas em 2026-11-04)
+- **Faça tudo numa rodada só, até o push final.** Não encerre a resposta enquanto `publicar_dia.py` roda em segundo plano: espere com um loop `until`/Monitor até ele terminar. Se a resposta terminar antes, o site e o feed não são atualizados.
+- **Escolha as fotos de arquivo ANTES de gerar** (histórias: baixe as fotos do próprio fato para `producao/diario/AAAA-MM-DD/fotos/` e use `"img_url": "file://..."` + `"credito"`), para não gerar vídeos com cenas aleatórias e ter de refazê-los. O dono posta os vídeos assim que aparecem na página.
+
 ## Formato dos arquivos do dia
 
 `audios/a1.json … a6.json`
