@@ -83,22 +83,23 @@ def loc(q, n):
     return top[:n]
 def buscar(q, pasta, n=1, fonte="auto"):
     os.makedirs(pasta, exist_ok=True)
-    res = []
     ordem = {"auto": ["pixabay", "wikimedia"], "wikimedia": ["wikimedia", "loc"], "historico": ["wikimedia", "loc"], "loc": ["loc"], "pixabay": ["pixabay"]}[fonte]
+    # nome de arquivo do Commons ("File:Nome_exato.jpg") vira busca em texto para a LoC
+    q_loc = os.path.splitext(q.replace("File:", ""))[0].replace("_", " ") if q.startswith("File:") else q
     for f in ordem:
         try:
-            res = {"pixabay": pixabay, "wikimedia": wikimedia, "loc": loc}[f](q.replace("File:", "") if f == "loc" else q, n)
+            res = {"pixabay": pixabay, "wikimedia": wikimedia, "loc": loc}[f](q_loc if f == "loc" else q, n)
         except Exception as e:
             print(f"[imagens] {f} falhou: {e}", file=sys.stderr); res = []
-        if res: break
-    saida = []
-    for i, (url, cred) in enumerate(res):
-        nome = os.path.join(pasta, f"{abs(hash(q)) % 10**8}_{i}.jpg")
-        try:
-            open(nome, "wb").write(_get(url, raw=True)); saida.append({"arquivo": nome, "credito": cred})
-        except Exception as e:
-            print(f"[imagens] download falhou: {e}", file=sys.stderr)
-    return saida
+        saida = []
+        for i, (url, cred) in enumerate(res):
+            nome = os.path.join(pasta, f"{abs(hash(q)) % 10**8}_{f}_{i}.jpg")
+            try:
+                open(nome, "wb").write(_get(url, raw=True)); saida.append({"arquivo": nome, "credito": cred})
+            except Exception as e:
+                print(f"[imagens] download {f} falhou: {e}", file=sys.stderr)
+        if saida: return saida   # só desiste da fonte se nada foi baixado (ex.: Commons com 429 sem token)
+    return []
 if __name__ == "__main__":
     print(json.dumps(buscar(sys.argv[1], sys.argv[2], int(sys.argv[3]) if len(sys.argv) > 3 else 1), ensure_ascii=False, indent=1))
 

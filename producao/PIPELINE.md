@@ -55,7 +55,7 @@ Depois: `git add -A` (o .gitignore já exclui `saida/`), commit e push em `main`
 - **Nunca** use foto/clipe que contradiga a história: soldado moderno numa história da 2ª Guerra, uniforme de outro país, época errada, pessoas aleatórias no lugar do personagem. Na dúvida, prefira mapa, local, paisagem ou objeto da época a uma pessoa errada.
 - Clipes de vídeo (`"video"`) em histórias só quando combinam com a época/lugar (neve, lama, mar revolto, fogo, explosão distante, montanha). Para gancho de história, uma foto de arquivo forte também vale.
 - Ao conferir o vídeo (passo 6 da tarefa diária), troque qualquer cena com imagem fora de contexto.
-- Chave do Commons: `WIKIMEDIA_TOKEN` (variável do ambiente) ou `~/.wikimedia_token`. Sem ela o Commons costuma recusar (erro 429) por limite de IP compartilhado.
+- Chave do Commons (opcional): `WIKIMEDIA_TOKEN` (variável do ambiente) ou `~/.wikimedia_token`. **Hoje o ambiente roda sem ela**: o Commons às vezes recusa (erro 429) por limite de IP compartilhado; nesse caso `imagens.py` passa sozinho para a Biblioteca do Congresso e, se nada servir, o `img_reserva` (Pixabay) entra. Para histórias brasileiras, prefira `"img_url"` de acervos oficiais (ver acima), que não depende do Commons.
 
 ### Prender a atenção nos primeiros 2 segundos (obrigatório)
 - **Nada de introdução.** A 1ª fala do vídeo é o gancho, com no máximo 8 palavras, e entra imediatamente. Tipos de gancho: número chocante ("300 homens contra 100 mil."), cena no meio da ação ("A granada caiu aos pés dele."), pergunta provocativa ("Você aguentaria 3 dias sem dormir?"), contradição ("Ele foi recusado pelo exército. Virou herói.").
