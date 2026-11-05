@@ -12,7 +12,14 @@ n = 0
 cenas = cfg["cenas"] + [{"outro": True, "falas": [cfg.get("fala_final", "Forjados. Episódios completos no Spotify. Siga para mais.")]}]
 for i, c in enumerate(cenas):
     img, cred, clip, inteira = None, "", None, False
-    if c.get("video"):
+    if c.get("video_url"):   # clipe escolhido a dedo (endereço direto do MP4 + "credito"): evita o sorteio da busca
+        try:
+            from imagens import _get
+            os.makedirs(os.path.join(work, "vid"), exist_ok=True); arq = os.path.join(work, "vid", f"url{i:02d}.mp4")
+            open(arq, "wb").write(_get(c["video_url"], raw=True)); clip = arq
+            cred = c.get("credito_video", "Vídeo: Pixabay"); creditos.append(cred)
+        except Exception as e: print(f"[video_url] falhou: {e}", file=sys.stderr)
+    if c.get("video") and not clip:
         r = buscar_video(c["video"], os.path.join(work, "vid"))
         if r: clip, cred = r["arquivo"], r["credito"]; creditos.append(cred)
     if c.get("img_url") and not clip:   # foto de arquivo achada via busca (endereço direto da imagem)
