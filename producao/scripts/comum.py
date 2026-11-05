@@ -1,4 +1,4 @@
-import os, re, subprocess, wave
+import os, re, subprocess, sys, wave
 VOZ_PADRAO = "pt-BR-AntonioNeural:+4%:-8Hz"   # áudios do podcast
 VOZ_VIDEO = "pt-BR-AntonioNeural:+21%:-6Hz"   # vídeos: mais rápido, prende atenção
 def limpa(t): return re.sub(r"\*\*(.+?)\*\*", r"\1", t)
@@ -32,10 +32,18 @@ def tts_corrido(textos, wav, voz):
             async for ch in c.stream():
                 if ch["type"] == "audio": f.write(ch["data"])
                 elif ch["type"] == "WordBoundary": marcas.append((ch["offset"] / 1e7, ch["text"]))
-    for t in range(3):
-        try: marcas.clear(); asyncio.run(run()); break
+    norm = lambda s: re.sub(r"[^\w]", "", s.lower())
+    ultima = norm(texto.split()[-1]) if texto.split() else ""
+    for t in range(4):
+        try:
+            marcas.clear(); asyncio.run(run())
+            # o serviço às vezes encerra o fluxo no meio sem erro (vídeo de 2026-11-05 saiu cortado): confere a última palavra
+            if not marcas or (ultima and norm(marcas[-1][1]) != ultima):
+                raise RuntimeError(f"narração incompleta ({len(marcas)} palavras, última: {marcas[-1][1] if marcas else '-'})")
+            break
         except Exception as e:
-            if t == 2: raise
+            print(f"[tts] tentativa {t+1} falhou: {e}", file=sys.stderr)
+            if t == 3: raise
     subprocess.run(["ffmpeg", "-y", "-loglevel", "error", "-i", mp3, "-ar", "24000", "-ac", "1", wav], check=True)
     with wave.open(wav) as w: total = w.getnframes() / w.getframerate()
     # início de cada trecho = tempo da 1ª palavra dele; procura a palavra adiante (números podem virar várias marcas)
