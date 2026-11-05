@@ -1,0 +1,101 @@
+{
+ "titulo": "Desafio: ninguém está vendo",
+ "legenda_post": "O caráter se forma nas horas sem plateia. Hoje você faz algo bem feito e não conta pra ninguém. 🤫\n\nCumpriu? Comente só: FEITO.\n\n#desafio #disciplina #carater #motivacao #forjados",
+ "cenas": [
+  {
+   "kicker": "5 DA MANHÃ",
+   "big": "NINGUÉM VÊ",
+   "falas": [
+    "Às cinco da manhã, ninguém está vendo.",
+    "E é exatamente por isso que essa hora **vale tanto**.",
+    "Hoje em dia, quase tudo vira postagem, o treino, a comida, o livro, a viagem."
+   ],
+   "img": "alarm clock dark",
+   "video": "dark city morning"
+  },
+  {
+   "kicker": "O PROBLEMA",
+   "big": "SÓ COM PLATEIA",
+   "falas": [
+    "Sem perceber, muita gente passou a fazer as coisas só quando tem alguém **olhando**.",
+    "A academia que durou enquanto rendia foto.",
+    "O projeto que morreu quando ninguém mais perguntava."
+   ],
+   "img": "phone camera selfie"
+  },
+  {
+   "kicker": "A VERDADE",
+   "big": "SEM CÂMERA",
+   "falas": [
+    "Os resultados de verdade não nascem na frente da câmera.",
+    "Nascem no treino em que você estava sozinho e podia ter **parado na metade**.",
+    "E no trabalho que ninguém ia conferir, mas você fez bem feito."
+   ],
+   "img": "man running alone",
+   "video": "man running alone dark"
+  },
+  {
+   "kicker": "O ATLETA",
+   "big": "ANOS POR MINUTOS",
+   "falas": [
+    "Um atleta treina anos para uma prova de poucos minutos.",
+    "A plateia vê a prova, ninguém viu as **madrugadas**.",
+    "E foram justamente elas que decidiram o resultado."
+   ],
+   "img": "empty stadium track"
+  },
+  {
+   "kicker": "DISCIPLINA",
+   "big": "IGUAL",
+   "falas": [
+    "Disciplina é fazer **igual** com plateia ou sem.",
+    "Quem só se esforça quando é observado depende dos outros para ser forte.",
+    "E os outros, cedo ou tarde, vão embora."
+   ],
+   "img": "empty gym",
+   "video": "man training alone gym"
+  },
+  {
+   "kicker": "O DESAFIO",
+   "big": "1 TAREFA",
+   "falas": [
+    "Então aqui vai o desafio de hoje.",
+    "Escolha **uma tarefa** que ninguém vai ver.",
+    "Arrumar algo bagunçado há semanas, um treino extra, meia hora de estudo ou uma ligação importante."
+   ],
+   "img": "notebook checklist pen"
+  },
+  {
+   "kicker": "A REGRA",
+   "big": "NÃO POSTE",
+   "falas": [
+    "Faça bem feito, do começo ao fim.",
+    "E aqui está a regra mais difícil: **não poste**, não conte, não espere elogio.",
+    "Deixe essa vitória ser só sua."
+   ],
+   "img": "man writing notebook",
+   "video": "man writing notebook"
+  },
+  {
+   "kicker": "AMANHÃ",
+   "big": "NO ESCURO",
+   "falas": [
+    "Amanhã, repare em como você se sente.",
+    "Existe uma força silenciosa em ser a mesma pessoa **no escuro e na luz**.",
+    "Ninguém vai saber, e é aí que mora a graça, porque você vai."
+   ],
+   "img": "man sunrise window"
+  },
+  {
+   "kicker": "DESAFIO DO DIA",
+   "big": "COMENTE FEITO",
+   "falas": [
+    "Cumpriu o desafio? Volta aqui e comenta só uma palavra.",
+    "Sem detalhes, o resto fica entre você e você:",
+    "**FEITO**."
+   ],
+   "img": "sunrise city",
+   "video": "sunrise city skyline"
+  }
+ ]
+}
