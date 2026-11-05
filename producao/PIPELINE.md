@@ -21,6 +21,12 @@ Depois: `git add -A` (o .gitignore já exclui `saida/`), commit e push em `main`
 - **Faça tudo numa rodada só, até o push final.** Não encerre a resposta enquanto `publicar_dia.py` roda em segundo plano: espere com um loop `until`/Monitor até ele terminar. Se a resposta terminar antes, o site e o feed não são atualizados.
 - **Escolha as fotos de arquivo ANTES de gerar** (histórias: baixe as fotos do próprio fato para `producao/diario/AAAA-MM-DD/fotos/` e use `"img_url": "file://..."` + `"credito"`), para não gerar vídeos com cenas aleatórias e ter de refazê-los. O dono posta os vídeos assim que aparecem na página.
 
+- **Clipes de vídeo: escolha pela miniatura.** A busca `"video"` sorteia entre os melhores resultados e já trouxe canguru, batom, desenho e boneco 3D. Prefira `"video_url"` (endereço do MP4 da Pixabay) + `"credito_video"`, escolhido depois de ver a miniatura (`videos.medium.thumbnail` na API de vídeos da Pixabay).
+- **Confira a narração inteira:** o vídeo deve terminar com a fala final ("Forjados. Episódios completos no Spotify..."). `comum.py` já repete a narração se ela vier cortada.
+
+## Pedidos do dono (pauta)
+- **2026-11-06: 3 dos 6 vídeos sobre David Goggins**, com **fotos reais dele** (feitos, corridas). Use só as fotos de `producao/fotos/goggins/` (Marinha dos EUA, domínio público; créditos em `creditos.json`) via `"img_url": "file://..."`; nas cenas sem foto dele, use clipes/fotos genéricos que não pareçam ser ele (corrida no deserto, barra, estrada), nunca outra pessoa apresentada como Goggins. Ângulos diferentes entre os 3 (ex.: Badwater 135 em 2007; recorde de barras; a transformação para entrar nos SEALs) e formatos diferentes; confira cada fato com WebSearch. Ele já foi tema do áudio Ep. 01 (2026-11-03): não repita aquele roteiro. Os outros 3 vídeos e os 6 áudios seguem a regra normal (os áudios podem incluir 1 sobre Goggins).
+
 ## Formato dos arquivos do dia
 
 `audios/a1.json … a6.json`
