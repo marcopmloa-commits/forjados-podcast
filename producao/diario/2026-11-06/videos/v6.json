@@ -42,7 +42,9 @@
     "Chegou à Inglaterra, mas não ficou parada.",
     "Foi treinada pelos serviços especiais britânicos para voltar."
    ],
-   "img": "pyrenees mountains snow"
+   "img_url": "https://pixabay.com/get/g7df4ece7f8764ae514dd68be5529df82136ee5d4ae3f31b505c937131c596a9e756f5b6a88ed6e08f787d20bded72025452394a4739323b01b248bd031c6faca_1280.jpg",
+   "credito": "Foto: ELG21 / Pixabay",
+   "inteira": false
   },
   {
    "kicker": "1944",
@@ -72,9 +74,9 @@
     "Em setenta e uma horas, passando por postos de controle alemães.",
     "Quando terminou, mal conseguia ficar em pé, mas o rádio voltou a funcionar."
    ],
-   "img": "bicycle road",
-   "video_url": "https://cdn.pixabay.com/video/2025/06/26/288020_medium.mp4",
-   "credito_video": "Vídeo: Eugen-Ol / Pixabay"
+   "img_url": "https://pixabay.com/get/gf62690264cc0492d04f940d0ee85901b41ffe3609e0070f443cf53b2a2cee43d42ecd4e63e4189134d58bcb5c6f7b01045c9ba9b067f2216ee5b08bb198d6acc_1280.jpg",
+   "credito": "Foto: nguyenhuynhmai / Pixabay",
+   "inteira": false
   },
   {
    "kicker": "O LEGADO",
