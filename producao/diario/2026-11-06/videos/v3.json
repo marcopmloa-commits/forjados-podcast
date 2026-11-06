@@ -10,8 +10,8 @@
     "Foi o número de **David Goggins** no recorde mundial de barras em vinte e quatro horas.",
     "Mas a história de verdade está nas tentativas antes."
    ],
-   "img_url": "file:///home/user/forjados-podcast/producao/fotos/goggins/barra_2009.jpg",
-   "credito": "Foto: U.S. Navy photo by Mass Communication Specialist 2nd Class M / Wikimedia Commons (Public domain)"
+   "img_url": "file:///home/user/forjados-podcast/producao/fotos/goggins/maio_2008.jpg",
+   "credito": "Foto: Paul Rudman at https://www.flickr.com/photos/thecanonrattman / Wikimedia Commons (CC BY-SA 3.0)"
   },
   {
    "kicker": "A BARRA",
@@ -21,7 +21,8 @@
     "Agora repete isso **milhares de vezes**, por horas, sem parar de verdade.",
     "As mãos rasgam, os braços tremem, e a cabeça implora o tempo todo para parar."
    ],
-   "img": "pull up bar gym chalk"
+   "img_url": "file:///home/user/forjados-podcast/producao/fotos/goggins/barra_2009.jpg",
+   "credito": "Foto: U.S. Navy photo by Mass Communication Specialist 2nd Class M / Wikimedia Commons (Public domain)"
   },
   {
    "kicker": "1ª TENTATIVA",
@@ -31,7 +32,9 @@
     "Ele parou **longe do recorde**, na frente de todo mundo.",
     "Muita gente teria encerrado ali mesmo, e ninguém ia culpar."
    ],
-   "img": "chalk hands gym dark"
+   "img_url": "https://pixabay.com/get/gab0c62497c1faf13fdf91b7b965c66b0cb7ad5fee23af001868b8ff0d80c9257d8b8cc1f61721f549f7a816f464e3bac4497a8a6c0f651d11871b29b6eff1bb7_1280.jpg",
+   "credito": "Foto: Arcaion / Pixabay",
+   "inteira": false
   },
   {
    "kicker": "2ª TENTATIVA",
@@ -41,7 +44,9 @@
     "E falhou de novo, mesmo depois de meses de preparação.",
     "Mais um fracasso público para quem estava olhando."
    ],
-   "img": "tired athlete gym floor"
+   "img_url": "https://pixabay.com/get/gdaa698279a5a16ae42749ea07e4b2cf29beaa1dc04ddda95d37c24581b0b10dc6baaf13825fc9e14f1f22a04def2ae684c0152d196e4a887dffa1ee91296efcf_1280.jpg",
+   "credito": "Foto: Pexels / Pixabay",
+   "inteira": false
   },
   {
    "kicker": "O AJUSTE",
@@ -83,7 +88,9 @@
     "A prova, o projeto, a dieta, a **conversa difícil**.",
     "Talvez você tenha parado exatamente antes da tentativa que ia dar certo, sem nem saber."
    ],
-   "img": "man determined training gym"
+   "img_url": "https://pixabay.com/get/g39f047b2763f1d922df0dcf89f849629e5785b2ac7cdbbdfdeb52a9ce4a8e0869bf8e3ffb440fa172dabd4f6ef76e1566fd30397e0da39a59a1be0defa959463_1280.jpg",
+   "credito": "Foto: MaeM / Pixabay",
+   "inteira": false
   },
   {
    "kicker": "LEMBRE",
