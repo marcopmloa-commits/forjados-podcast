@@ -1,0 +1,108 @@
+{
+ "titulo": "Cerco de Malta em números",
+ "legenda_post": "Esperavam conquistar a ilha em semanas. Ela resistiu por quase 4 meses. 🏰\n\nQual número mais te impressionou?\n\n#cercodemalta #historia #historiareal #resistencia #forjados",
+ "cenas": [
+  {
+   "kicker": "MALTA, 1565",
+   "big": "~4 MESES",
+   "falas": [
+    "Quase quatro meses de resistência.",
+    "Uma ilha pequena contra um dos **maiores exércitos** da época.",
+    "E ninguém, nem os próprios defensores, esperava que ela aguentasse tanto tempo."
+   ],
+   "img_url": "file:///home/user/forjados-podcast/producao/diario/2026-11-08/fotos/ml_lafreri.jpg",
+   "credito": "Foto: Antonio Lafreri / Wikimedia Commons (Public domain)"
+  },
+  {
+   "kicker": "MAIO DE 1565",
+   "big": "DEZENAS DE MIL",
+   "falas": [
+    "Uma enorme frota do Império Otomano chegou à ilha de Malta.",
+    "As estimativas falam em **dezenas de milhares** de soldados.",
+    "Todos esperando uma vitória rápida, em poucas semanas."
+   ],
+   "video_url": "https://cdn.pixabay.com/video/2016/04/01/2633-161442806_medium.mp4",
+   "credito_video": "Vídeo: bellergy / Pixabay"
+  },
+  {
+   "kicker": "OS DEFENSORES",
+   "big": "~500",
+   "falas": [
+    "Do outro lado, cerca de **quinhentos cavaleiros** de uma antiga ordem militar.",
+    "Mais alguns milhares de soldados e moradores malteses.",
+    "Muito menos gente para defender uma ilha inteira e suas fortalezas."
+   ],
+   "img_url": "file:///home/user/forjados-podcast/producao/diario/2026-11-08/fotos/ml_siege1.jpg",
+   "credito": "Foto: Matteo Perez d'Aleccio / Wikimedia Commons (Public domain)"
+  },
+  {
+   "kicker": "O COMANDANTE",
+   "big": "70+",
+   "falas": [
+    "No comando estava o grão-mestre **Jean de la Valette**.",
+    "Um veterano com mais de setenta anos de idade.",
+    "E ele sabia que, para vencer, precisava antes de tudo ganhar tempo."
+   ],
+   "img_url": "file:///home/user/forjados-podcast/producao/diario/2026-11-08/fotos/ml_valette.jpg",
+   "credito": "Foto: Unknown authorUnknown author / Wikimedia Commons (Public domain)"
+  },
+  {
+   "kicker": "SANTO ELMO",
+   "big": "~1 MÊS",
+   "falas": [
+    "O primeiro alvo foi o pequeno **Forte de Santo Elmo**.",
+    "Os atacantes contavam tomá-lo em poucos dias.",
+    "Ele resistiu por cerca de um mês inteiro."
+   ],
+   "img_url": "file:///home/user/forjados-podcast/producao/diario/2026-11-08/fotos/ml_forte.jpg",
+   "credito": "Foto: Continentaleurope / Wikimedia Commons (CC BY-SA 4.0)"
+  },
+  {
+   "kicker": "O PREÇO",
+   "big": "DIAS GANHOS",
+   "falas": [
+    "Os defensores do forte sabiam que dificilmente sairiam vivos.",
+    "Mas cada dia que seguravam era **um dia ganho** para o resto da ilha.",
+    "Quando o forte caiu, quase todos tinham morrido."
+   ],
+   "img_url": "https://pixabay.com/get/g2e62aea28d9156602607bc3c37bb4f2bb19ae9f88fa8e38cd39689c073409d4758dc5dcf2637d27a0b869392eb62e6fc9d5c0dfa7c188d399412e53103bd3273_1280.jpg",
+   "credito": "Foto: Michael_Pointner / Pixabay",
+   "inteira": false
+  },
+  {
+   "kicker": "TODOS",
+   "big": "CADA UM",
+   "falas": [
+    "Vieram semanas de bombardeio, túneis sob as muralhas, calor e doenças.",
+    "Moradores comuns, inclusive **mulheres e crianças**, carregavam pedras, água e munição.",
+    "Cada um carregava alguma coisa."
+   ],
+   "img_url": "https://pixabay.com/get/g109357cab1485f9482502ca6a6be15052aac533d1dbfc8ac59baa7ae4f4c785297d55e89032e7ac9ad3fbec3646b69654407f1a5a07108dda663f78ebaba1ff1_1280.png",
+   "credito": "Foto: Momentmal / Pixabay",
+   "inteira": false
+  },
+  {
+   "kicker": "SETEMBRO",
+   "big": "O SOCORRO",
+   "falas": [
+    "Em setembro, chegou uma frota de socorro vinda da Sicília.",
+    "O exército atacante, exausto, **levantou o cerco** e partiu.",
+    "A ilha pequena, que todos davam como perdida, não caiu."
+   ],
+   "video_url": "https://cdn.pixabay.com/video/2026/05/16/353078_medium.mp4",
+   "credito_video": "Vídeo: Mario_Krimer / Pixabay"
+  },
+  {
+   "kicker": "NA SUA VIDA",
+   "big": "+1 DIA",
+   "falas": [
+    "Às vezes você não vai vencer a batalha de hoje.",
+    "Mas pode segurar **mais um dia**,",
+    "e esse dia pode ser exatamente o que falta."
+   ],
+   "img_url": "https://pixabay.com/get/g60729587703856d5f5aff2ce00eb9fa14a0a89ecc9f8e4d9e041085845409953c412d75fbe5443dd9fe729618d38d1703ab4d7dc413ae9c5bfa056015a4f08f7_1280.jpg",
+   "credito": "Foto: LagrangeHervé / Pixabay",
+   "inteira": false
+  }
+ ]
+}
