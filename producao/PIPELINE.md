@@ -95,3 +95,10 @@ Depois: `git add -A` (o .gitignore já exclui `saida/`), commit e push em `main`
 - Domínios que o ambiente precisa: speech.platform.bing.com, pixabay.com, cdn.pixabay.com (fotos e vídeos), commons.wikimedia.org, upload.wikimedia.org, fonts.googleapis.com, fonts.gstatic.com.
 - Site: https://marcopmloa-commits.github.io/forjados-podcast/ · Feed: …/feed.xml (Spotify já cadastrado).
 - Commits com e-mail noreply do GitHub; nunca o e-mail pessoal do dono.
+
+## Músicas da Suno: download automático
+- O dono cola os links de compartilhar (`suno.com/song/...`) no doc "forjados" do Drive (id `1Rq08Muedtb0Du6GcA0s8f0ti9kTCz4Pe-Ck6UYcd7OU`).
+- O servidor de áudio da Suno recusa download direto (403). Baixe pelo usesuno.com, que é o site indicado pelo dono:
+  `node producao/scripts/baixar_suno.js <link> <pasta>` gera o zip com mp3, letra (txt) e capa.
+- Depois siga a regra de vídeos de música: corte em 1:30, `transcrever.py` só para os tempos, `montar_musica.py cfg.json` (config com `musica`, `build`, `legendas` [[ini,"texto",fim],...], `outro`, `outro_texto`, `calmo_ate`, `calmo_desde`, `regex_corrida`, `seed`), revisão dos quadros, compressão para menos de 60 MB e publicação.
+- `montar_musica.py` usa os clipes da pasta `musica_clips` (com `meta.json`). Se o contêiner for recriado, baixe de novo clipes do Pixabay escolhidos pela miniatura.
