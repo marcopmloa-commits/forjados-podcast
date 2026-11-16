@@ -11,6 +11,7 @@ const { chromium } = require('playwright');
   await p.click('[data-audio-format-choice="mp3"]', { timeout: 15000 });
   const cont = p.getByRole('button', { name: /Continuar download/i });   // aviso de patrocinador antes do download
   try { await cont.waitFor({ state: 'visible', timeout: 20000 }); await cont.click(); } catch (e) {}
-  const d = await dl; const f = out + '/' + d.suggestedFilename(); await d.saveAs(f); console.log(f);
+  const d = await dl; let nome = d.suggestedFilename(); if (!/\.zip$/i.test(nome)) nome = 'musica_' + Date.now() + '.zip';   // nomes com acento chegam como "download"
+  const f = out + '/' + nome; await d.saveAs(f); console.log(f);
   await b.close();
 })().catch(e => { console.error('ERRO', e.message); process.exit(1); });

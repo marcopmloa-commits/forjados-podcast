@@ -29,8 +29,8 @@ calmo=["porta_luz","neblina","praia_sol1","praia_sol2","rochas_sol","praia_sol3"
 forte=["maratona_pes","maratona_multidao","maratona_aerea","pes_claro","botas_marcha","flexao_praia","flexao_pb","boxer_rosto","boxe_saco","pneu","mar_rochas","ondas","escalada","soldado_areia","soldado_tatico","helicoptero","halter","prancha","trilha_pernas","trilha_cerca"]
 random.seed(CFG.get('seed',7)); ult=[]; pos={k:0.0 for k in meta}
 def escolhe(t,tx):
-    pool = calmo if (t<CFG.get('calmo_ate',8) or t>=CFG.get('calmo_desde',DUR)) else forte
-    if tx and re.search(CFG.get("regex_corrida",r"CORRE|corre|quilômetro|QUILÔMETRO|MAIS UM|MAIS RÁPIDO|APERTA"),tx): pool=["maratona_pes","maratona_multidao","pes_claro","trilha_pernas","trilha_cerca","praia_sol2","praia_sol3","parque","maratona_aerea"]
+    pool = (CFG.get("pool_calmo") or calmo) if (t<CFG.get('calmo_ate',8) or t>=CFG.get('calmo_desde',DUR)) else (CFG.get("pool_forte") or forte)
+    if tx and re.search(CFG.get("regex_corrida",r"CORRE|corre|quilômetro|QUILÔMETRO|MAIS UM|MAIS RÁPIDO|APERTA"),tx): pool=CFG.get("pool_corrida") or ["maratona_pes","maratona_multidao","pes_claro","trilha_pernas","trilha_cerca","praia_sol2","praia_sol3","parque","maratona_aerea"]
     c=[x for x in pool if x not in ult[-4:]] or pool
     k=random.choice(c); ult.append(k); return k
 def png_de(tx,cred):
