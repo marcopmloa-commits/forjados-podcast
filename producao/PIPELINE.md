@@ -102,3 +102,10 @@ Depois: `git add -A` (o .gitignore já exclui `saida/`), commit e push em `main`
   `node producao/scripts/baixar_suno.js <link> <pasta>` gera o zip com mp3, letra (txt) e capa.
 - Depois siga a regra de vídeos de música: corte em 1:30, `transcrever.py` só para os tempos, `montar_musica.py cfg.json` (config com `musica`, `build`, `legendas` [[ini,"texto",fim],...], `outro`, `outro_texto`, `calmo_ate`, `calmo_desde`, `regex_corrida`, `seed`), revisão dos quadros, compressão para menos de 60 MB e publicação.
 - `montar_musica.py` usa os clipes da pasta `musica_clips` (com `meta.json`). Se o contêiner for recriado, baixe de novo clipes do Pixabay escolhidos pela miniatura.
+
+## Coverr (segunda fonte de clipes)
+- Chave salva no ambiente (segredo de rede para `api.coverr.co`, a mesma do projeto versículo). Não guarde a chave em arquivo.
+- `imagens.buscar_coverr(q)` devolve os candidatos. Escolha pela miniatura (`thumb`) e baixe o `url` com curl e User-Agent de navegador. O crédito é "Vídeo: Coverr".
+- A busca tem limite por hora ("Exceeded query limit"). Quando estourar, use a Pixabay. Os downloads de cdn.coverr.co não contam nesse limite.
+- Busque com termos simples em inglês (bed, gym, rain, skateboard). Frases longas costumam voltar vazias.
+- Nos vídeos de música, os clipes do Coverr ficam em `musica_clips/` com o prefixo `cv_`, e o `meta.json` registra `credito`.

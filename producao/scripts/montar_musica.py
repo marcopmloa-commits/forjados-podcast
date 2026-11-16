@@ -43,7 +43,7 @@ def png_de(tx,cred):
 frames=[]; F=[]
 for i,s in enumerate(segs):
     k=escolhe(s[0],s[2]) if s[2]!="__OUTRO__" else "praia_sol2"
-    s.append(k); cred=f"Vídeo: {meta[k]['user']} / Pixabay"
+    s.append(k); cred=meta[k].get('credito') or f"Vídeo: {meta[k]['user']} / Pixabay"
     png=f"{W}/t{i:03d}.png"; d=png_de(s[2],cred); d["out"]=png; frames.append(d)
 json.dump(frames,open(W+'/frames.json','w'),ensure_ascii=False)
 subprocess.run(["node",SCR+"/render_frames.js",W+'/frames.json',"frame2.html"],check=True,cwd=SCR)
@@ -61,6 +61,6 @@ for i,(a,b,tx,k) in enumerate(segs):
 lista.close()
 final=W+'/final.mp4'
 subprocess.run(["ffmpeg","-y","-loglevel","error","-f","concat","-safe","0","-i",W+'/v.txt',"-i",MUS,"-map","0:v","-map","1:a","-c:v","copy","-c:a","aac","-b:a","192k","-shortest","-movflags","+faststart",final],check=True)
-creds=sorted({f"Vídeo: {meta[s[3]]['user']} / Pixabay" for s in segs})
+creds=sorted({(meta[s[3]].get('credito') or f"Vídeo: {meta[s[3]]['user']} / Pixabay") for s in segs})
 json.dump({"duracao":DUR,"creditos":creds,"segmentos":len(segs)},open(W+'/final.json','w'),ensure_ascii=False)
 print("ok",final,len(segs),"segmentos")

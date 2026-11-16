@@ -129,3 +129,16 @@ def buscar_video(q, pasta, dur_min=4):
             return {"arquivo": nome, "credito": f"Vídeo: {h['user']} / Pixabay"}
         except Exception as e: print(f"[videos] download falhou: {e}", file=sys.stderr)
     return None
+
+def buscar_coverr(q, n=8):
+    """Clipes do Coverr (licença livre, crédito "Vídeo: Coverr"). A chave fica salva no ambiente e o proxy a injeta
+    nas chamadas a api.coverr.co; precisa de User-Agent de navegador (Cloudflare recusa o do urllib).
+    A busca tem limite por hora, compartilhado com o projeto versículo: em "Exceeded query limit", use a Pixabay.
+    Devolve [{id, titulo, dur, url, thumb}] (sem os premium). Escolha pela miniatura antes de usar."""
+    import subprocess
+    u = "https://api.coverr.co/videos?" + urllib.parse.urlencode({"query": q, "page_size": n * 2, "urls": "true"})
+    r = subprocess.run(["curl", "-s", "-m", "40", "-A", "Mozilla/5.0", u], capture_output=True, text=True).stdout
+    d = json.loads(r or "{}")
+    if "hits" not in d: print(f"[coverr] {d.get('message', 'falhou')}", file=sys.stderr); return []
+    return [{"id": h["id"], "titulo": h["title"], "dur": float(h["duration"]), "url": h["urls"]["mp4"], "thumb": h["thumbnail"]}
+            for h in d["hits"] if not h.get("is_premium")][:n]
