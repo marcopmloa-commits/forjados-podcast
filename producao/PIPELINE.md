@@ -29,6 +29,8 @@ Depois: `git add -A` (o .gitignore já exclui `saida/`), commit e push em `main`
 ## Pedidos do dono (pauta)
 - **2026-11-06: 3 dos 6 vídeos sobre David Goggins**, com **fotos reais dele** (feitos, corridas). Use só as fotos de `producao/fotos/goggins/` (Marinha dos EUA, domínio público; créditos em `creditos.json`) via `"img_url": "file://..."`; nas cenas sem foto dele, use clipes/fotos genéricos que não pareçam ser ele (corrida no deserto, barra, estrada), nunca outra pessoa apresentada como Goggins. Ângulos diferentes entre os 3 (ex.: Badwater 135 em 2007; recorde de barras; a transformação para entrar nos SEALs) e formatos diferentes; confira cada fato com WebSearch. Ele já foi tema do áudio Ep. 01 (2026-11-03): não repita aquele roteiro. Os outros 3 vídeos e os 6 áudios seguem a regra normal (os áudios podem incluir 1 sobre Goggins).
 
+- **Vídeos de música do dono** (áudio enviado na pasta "forjados" do Drive): **duração de 1min30** (pedido do dono em 2026-11-16; o primeiro, com 4 min, ficou longo demais). Se a música for mais longa, corte num trecho que tenha gancho + refrão + final forte, com fade de 1–2 s. Montagem: clipes reais de corrida, maratona e treino militar escolhidos pela miniatura, cortes no ritmo, letra sincronizada (transcrição com faster-whisper só para os tempos; o texto vem da letra oficial), preto e branco, cartão FORJADOS no fim. Mantenha o MP4 abaixo de ~60 MB.
+
 ## Formato dos arquivos do dia
 
 `audios/a1.json … a6.json`
